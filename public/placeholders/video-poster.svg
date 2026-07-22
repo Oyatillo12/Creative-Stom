@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#10263B" />
+  <rect x="14" y="14" width="1572" height="872" fill="none" stroke="#C19A5B" stroke-width="1.5" />
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#F5F2EC" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="8">VIDEO</text>
+</svg>

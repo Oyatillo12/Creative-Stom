@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#10263B" />
+  <rect x="14" y="14" width="772" height="572" fill="none" stroke="#C19A5B" stroke-width="1.5" />
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#F5F2EC" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="5">KEYS 1 — KEYIN</text>
+</svg>
