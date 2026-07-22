@@ -88,14 +88,18 @@ export interface SiteContent {
   };
   homepage: {
     hero: { eyebrow: string; heading: string; subhead: string; ctaPrimary: string; ctaSecondary: string };
+    about: { eyebrow: string; heading: string; statement: string; linkLabel: string };
     services: { eyebrow: string; heading: string; intro: string; surgicalLabel: string; generalLabel: string; linkLabel: string };
     doctors: { eyebrow: string; heading: string; expandingLabel: string; expandingText: string; linkLabel: string };
-    cases: { eyebrow: string; heading: string; linkLabel: string };
-    reviews: { eyebrow: string; heading: string };
+    cases: { eyebrow: string; heading: string; beforeLabel: string; afterLabel: string; linkLabel: string };
+    credentials: { eyebrow: string; heading: string; certAlt: string; implantSystemsLabel: string; implantSystems: string[] };
+    firstVisit: { eyebrow: string; heading: string; steps: { n: string; title: string; text: string }[] };
+    reviews: { eyebrow: string; heading: string; googleLabel: string; linkLabel: string };
     faq: { eyebrow: string; heading: string };
     prices: { eyebrow: string; heading: string };
     quiz: { eyebrow: string; heading: string; intro: string; startLabel: string };
-    cta: { eyebrow: string; heading: string; text: string };
+    cta: { eyebrow: string; heading: string; text: string; primaryLabel: string; secondaryLabel: string };
+    contact: { eyebrow: string; heading: string; note: string };
   };
   implantPage: {
     breadcrumb: string[];
@@ -183,10 +187,10 @@ export const site: SiteContent = {
   },
 
   heroSlides: [
-    { image: "/placeholders/hero-1.svg", caption: "OPERATSIYA JARAYONI" },
-    { image: "/placeholders/hero-2.svg", caption: "KLINIKA QABULXONASI" },
-    { image: "/placeholders/hero-3.svg", caption: "MIKROSKOP OSTIDA ISH" },
-    { image: "/placeholders/hero-4.svg", caption: "JAMOA" },
+    { image: "/images/process-operation.jpg", caption: "OPERATSIYA JARAYONI" },
+    { image: "/images/qabul-xona.jpg", caption: "KLINIKA QABULXONASI" },
+    { image: "/images/micro-scope.jpg", caption: "MIKROSKOP OSTIDA ISH" },
+    { image: "/images/team.jpg", caption: "JAMOA" },
   ],
 
   doctors: [
@@ -222,7 +226,7 @@ export const site: SiteContent = {
   },
 
   media: {
-    aboutInterior: "/placeholders/about-interior.svg",
+    aboutInterior: "/images/interior.jpeg",
     processWide: "/placeholders/wide-process.svg",
     certificates: [
       "/placeholders/cert-1.svg",
@@ -242,6 +246,13 @@ export const site: SiteContent = {
       ctaPrimary: "Onlayn yozilish",
       ctaSecondary: "Xizmatlar →",
     },
+    about: {
+      eyebrow: "Klinika haqida",
+      heading: "Klinika emas — jarrohlik markazi",
+      statement:
+        "Biz protezlash punkti emas — jarrohlik markazimiz. Har bir davolash rejasi KT tashxisidan boshlanadi va jarroh tomonidan shaxsan tasdiqlanadi.",
+      linkLabel: "Batafsil →",
+    },
     services: {
       eyebrow: "Xizmatlar",
       heading: "Jarrohlik — klinikaning o'zagi",
@@ -260,11 +271,32 @@ export const site: SiteContent = {
     cases: {
       eyebrow: "Natijalar",
       heading: "Avval / Keyin",
+      beforeLabel: "Avval",
+      afterLabel: "Keyin",
       linkLabel: "Barcha keyslar →",
+    },
+    credentials: {
+      eyebrow: "Sertifikatlar",
+      heading: "Xalqaro standartlar asosida ishlaymiz",
+      certAlt: "Sertifikat",
+      implantSystemsLabel: "Ishlatiladigan implant tizimlari",
+      implantSystems: ["[IMPLANT TIZIMI 1]", "[IMPLANT TIZIMI 2]", "[IMPLANT TIZIMI 3]"], // TODO
+    },
+    firstVisit: {
+      eyebrow: "Birinchi tashrif",
+      heading: "Nima kutmoqchisiz",
+      steps: [
+        { n: "01", title: "Bog'lanish", text: "Telefon yoki Telegram orqali qulay vaqtni tanlaysiz" },
+        { n: "02", title: "KT tashxis", text: "30 daqiqa — klinikada, aniq holat ko'rinadi" },
+        { n: "03", title: "Davolash rejasi", text: "Jarroh tasdiqlagan reja va aniq narx" },
+        { n: "04", title: "Davolash", text: "Reja asosida, bosqichma-bosqich nazoratda" },
+      ],
     },
     reviews: {
       eyebrow: "Sharhlar",
       heading: "[Mijozlar fikri]", // TODO
+      googleLabel: "Google sharhlari",
+      linkLabel: "Google'da barcha sharhlarni ko'rish →",
     },
     faq: {
       eyebrow: "Savol-javob",
@@ -284,6 +316,13 @@ export const site: SiteContent = {
       eyebrow: "Yozilish",
       heading: "[Yakuniy CTA sarlavhasi]", // TODO
       text: "[Yakuniy CTA matni]", // TODO
+      primaryLabel: "Vaqt tanlab yozilish",
+      secondaryLabel: "60 soniyalik so'rovnoma",
+    },
+    contact: {
+      eyebrow: "Kontakt",
+      heading: "Klinikani xaritada toping",
+      note: "[MapBlock — keyingi bosqichda qo'shiladi]", // TODO
     },
   },
 

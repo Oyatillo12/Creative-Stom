@@ -28,3 +28,12 @@ body {
   background: var(--ivory);
   color: var(--ink);
 }
+
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}

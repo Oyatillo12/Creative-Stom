@@ -23,7 +23,10 @@ export default function StickyMobileBar() {
       >
         {layout.stickyBar.telegram}
       </a>
-      <a href="#" className="flex min-h-12 items-center justify-center text-xs font-semibold uppercase tracking-wide">
+      <a
+        href="#booking"
+        className="flex min-h-12 items-center justify-center text-xs font-semibold uppercase tracking-wide"
+      >
         {layout.stickyBar.book}
       </a>
     </div>
