@@ -49,6 +49,14 @@ export interface QuizStep {
   options: QuizOption[];
 }
 
+export interface QuizContactStep {
+  nameLabel: string;
+  namePlaceholder: string;
+  phoneLabel: string;
+  phonePlaceholder: string;
+  submitLabel: string;
+}
+
 export interface SiteContent {
   meta: {
     title: string;
@@ -85,6 +93,23 @@ export interface SiteContent {
     certificates: string[];
     mapFacade: string;
     videoPoster: string;
+    implantHero: string;
+  };
+  mapBlock: {
+    openLabel: string;
+    iframeTitle: string;
+    landmarkLabel: string;
+    phoneLabel: string;
+    hoursLabel: string;
+    googleLabel: string;
+    yandexLabel: string;
+    twoGisLabel: string;
+  };
+  servicePageStub: {
+    breadcrumbLabel: string;
+    genericHeading: string;
+    message: string;
+    backLabel: string;
   };
   homepage: {
     hero: { eyebrow: string; heading: string; subhead: string; ctaPrimary: string; ctaSecondary: string };
@@ -99,7 +124,7 @@ export interface SiteContent {
     prices: { eyebrow: string; heading: string };
     quiz: { eyebrow: string; heading: string; intro: string; startLabel: string };
     cta: { eyebrow: string; heading: string; text: string; primaryLabel: string; secondaryLabel: string };
-    contact: { eyebrow: string; heading: string; note: string };
+    contact: { eyebrow: string; heading: string };
   };
   implantPage: {
     breadcrumb: string[];
@@ -116,7 +141,7 @@ export interface SiteContent {
     };
     process: { eyebrow: string; heading: string; steps: { n: string; title: string; time: string }[] };
     results: { eyebrow: string; heading: string };
-    prices: { eyebrow: string };
+    prices: { eyebrow: string; heading: string };
     faq: { eyebrow: string; heading: string };
     cta: { eyebrow: string; heading: string; text: string };
   };
@@ -124,7 +149,13 @@ export interface SiteContent {
   faq: FaqItem[];
   reviews: { rating: string; count: string; items: ReviewItem[] };
   prices: { tiers: PriceTier[]; disclaimer: string };
-  quiz: { steps: QuizStep[] };
+  quiz: {
+    steps: QuizStep[];
+    contactStep: QuizContactStep;
+    backLabel: string;
+    closeLabel: string;
+    successTemplate: string;
+  };
   positioningQuote: { text: string; author: string };
   bookingForm: {
     nameLabel: string;
@@ -136,17 +167,18 @@ export interface SiteContent {
     timeLabel: string;
     timePlaceholder: string;
     submitLabel: string;
+    successMessage: string;
   };
 }
 
 export const site: SiteContent = {
   meta: {
-    title: "[KLINIKA NOMI] — Toshkentda jarrohlik darajasidagi stomatologiya", // TODO
+    title: "Crative Stom — Toshkentda jarrohlik darajasidagi stomatologiya", // TODO
     description: "[SEO uchun qisqa tavsif]", // TODO
   },
 
   clinic: {
-    name: "[KLINIKA NOMI]", // TODO
+    name: "Crative Stom", // TODO
     phone: "+998 [XX] [XXX-XX-XX]", // TODO
     address: "[Qisqa manzil]", // TODO
     landmark: "[Mo'ljal — masalan, ... yaqinida]", // TODO
@@ -236,6 +268,25 @@ export const site: SiteContent = {
     ],
     mapFacade: "/placeholders/map-facade.svg",
     videoPoster: "/placeholders/video-poster.svg",
+    implantHero: "/images/process-operation.jpg",
+  },
+
+  mapBlock: {
+    openLabel: "Xaritani ochish",
+    iframeTitle: "Klinika xaritada",
+    landmarkLabel: "Mo'ljal",
+    phoneLabel: "Telefon",
+    hoursLabel: "Ish vaqti",
+    googleLabel: "Google Xaritalar",
+    yandexLabel: "Yandex Xaritalar",
+    twoGisLabel: "2GIS",
+  },
+
+  servicePageStub: {
+    breadcrumbLabel: "Xizmatlar",
+    genericHeading: "Xizmat",
+    message: "Sahifa 1-bosqichda tayyorlanadi",
+    backLabel: "Barcha xizmatlar →",
   },
 
   homepage: {
@@ -322,7 +373,6 @@ export const site: SiteContent = {
     contact: {
       eyebrow: "Kontakt",
       heading: "Klinikani xaritada toping",
-      note: "[MapBlock — keyingi bosqichda qo'shiladi]", // TODO
     },
   },
 
@@ -381,6 +431,7 @@ export const site: SiteContent = {
     },
     prices: {
       eyebrow: "Narxlar",
+      heading: "[Narxlar sarlavhasi]", // TODO
     },
     faq: {
       eyebrow: "Savol-javob",
@@ -438,30 +489,48 @@ export const site: SiteContent = {
   quiz: {
     steps: [
       {
-        question: "[Savol 1]", // TODO
+        question: "Nechta tish yetishmayapti?",
         options: [
-          { label: "[Variant A]", value: "a" }, // TODO
-          { label: "[Variant B]", value: "b" }, // TODO
-          { label: "[Variant C]", value: "c" }, // TODO
+          { label: "1 ta", value: "1" },
+          { label: "2–3 ta", value: "2-3" },
+          { label: "Ko'p qismi", value: "most" },
+          { label: "Barchasi", value: "all" },
         ],
       },
       {
-        question: "[Savol 2]", // TODO
+        question: "Qancha vaqtdan beri?",
         options: [
-          { label: "[Variant A]", value: "a" }, // TODO
-          { label: "[Variant B]", value: "b" }, // TODO
-          { label: "[Variant C]", value: "c" }, // TODO
+          { label: "6 oydan kam", value: "lt-6m" },
+          { label: "1 yilgacha", value: "lt-1y" },
+          { label: "1 yildan ko'p", value: "gt-1y" },
         ],
       },
       {
-        question: "[Savol 3]", // TODO
+        question: "KT (3D) tasviringiz bormi?",
         options: [
-          { label: "[Variant A]", value: "a" }, // TODO
-          { label: "[Variant B]", value: "b" }, // TODO
-          { label: "[Variant C]", value: "c" }, // TODO
+          { label: "Ha", value: "yes" },
+          { label: "Yo'q", value: "no" },
+        ],
+      },
+      {
+        question: "Qachon boshlamoqchisiz?",
+        options: [
+          { label: "Tezroq", value: "asap" },
+          { label: "1–3 oy", value: "1-3m" },
+          { label: "O'rganyapman", value: "exploring" },
         ],
       },
     ],
+    contactStep: {
+      nameLabel: "Ism",
+      namePlaceholder: "Ismingiz",
+      phoneLabel: "Telefon",
+      phonePlaceholder: "+998 __ ___-__-__",
+      submitLabel: "Rejani olish",
+    },
+    backLabel: "Orqaga",
+    closeLabel: "Yopish",
+    successTemplate: "Rahmat, {name}! 15 daqiqada bog'lanamiz.",
   },
 
   positioningQuote: {
@@ -479,5 +548,6 @@ export const site: SiteContent = {
     timeLabel: "Qulay vaqt",
     timePlaceholder: "Masalan, ertaga 15:00",
     submitLabel: "Yuborish",
+    successMessage: "So'rovingiz qabul qilindi. Tez orada bog'lanamiz.",
   },
 };

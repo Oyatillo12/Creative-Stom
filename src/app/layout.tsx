@@ -5,6 +5,7 @@ import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
+import ModalProvider from "@/components/ModalProvider";
 import { site } from "@/content/site";
 
 const playfairDisplay = Playfair_Display({
@@ -32,11 +33,13 @@ export default function RootLayout({
   return (
     <html lang="uz" className={`${playfairDisplay.variable} ${inter.variable}`}>
       <body className="flex min-h-screen flex-col bg-ivory font-body text-ink antialiased">
-        <TopBar />
-        <Header />
-        <main className="flex-1 pb-16 md:pb-0">{children}</main>
-        <Footer />
-        <StickyMobileBar />
+        <ModalProvider>
+          <TopBar />
+          <Header />
+          <main className="flex-1 pb-16 md:pb-0">{children}</main>
+          <Footer />
+          <StickyMobileBar />
+        </ModalProvider>
       </body>
     </html>
   );

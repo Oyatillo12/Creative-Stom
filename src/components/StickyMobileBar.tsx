@@ -1,7 +1,11 @@
+"use client";
+
 import { site } from "@/content/site";
+import { useModals } from "./ModalProvider";
 
 export default function StickyMobileBar() {
   const { clinic, layout } = site;
+  const { openBooking } = useModals();
   const phoneHref = `tel:${clinic.phone.replace(/[^+\d]/g, "")}`;
 
   return (
@@ -23,12 +27,13 @@ export default function StickyMobileBar() {
       >
         {layout.stickyBar.telegram}
       </a>
-      <a
-        href="#booking"
+      <button
+        type="button"
+        onClick={openBooking}
         className="flex min-h-12 items-center justify-center text-xs font-semibold uppercase tracking-wide"
       >
         {layout.stickyBar.book}
-      </a>
+      </button>
     </div>
   );
 }

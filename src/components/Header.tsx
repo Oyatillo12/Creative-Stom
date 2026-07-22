@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { site } from "@/content/site";
 import Container from "./Container";
+import { useModals } from "./ModalProvider";
 
 const NAV_ANCHORS: Record<string, string> = {
   "Xizmatlar": "#services",
@@ -12,6 +15,7 @@ const NAV_ANCHORS: Record<string, string> = {
 
 export default function Header() {
   const { clinic, layout } = site;
+  const { openBooking } = useModals();
 
   return (
     <header className="border-b border-line bg-ivory">
@@ -26,12 +30,13 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <a
-          href="#booking"
+        <button
+          type="button"
+          onClick={openBooking}
           className="hidden items-center border border-navy px-6 py-3 font-body text-xs font-semibold uppercase tracking-[0.12em] text-navy transition-colors hover:bg-navy hover:text-ivory md:inline-flex"
         >
           {layout.header.ctaLabel}
-        </a>
+        </button>
       </Container>
     </header>
   );

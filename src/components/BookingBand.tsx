@@ -1,17 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import BookingFormModal from "./BookingFormModal";
-import QuizModal from "./QuizModal";
+import { useModals } from "./ModalProvider";
 import { site } from "@/content/site";
 
 export default function BookingBand() {
   const { cta } = site.homepage;
-  const [bookingOpen, setBookingOpen] = useState(false);
-  const [quizOpen, setQuizOpen] = useState(false);
+  const { openBooking, openQuiz } = useModals();
 
   return (
     <section id="booking" className="bg-navy py-24 text-ivory md:py-32">
@@ -24,14 +21,14 @@ export default function BookingBand() {
           <Reveal className="flex flex-col gap-5 sm:flex-row lg:flex-col">
             <button
               type="button"
-              onClick={() => setBookingOpen(true)}
+              onClick={openBooking}
               className="bg-gold px-9 py-4 text-center font-body text-xs font-semibold uppercase tracking-[0.12em] text-navy transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             >
               {cta.primaryLabel}
             </button>
             <button
               type="button"
-              onClick={() => setQuizOpen(true)}
+              onClick={openQuiz}
               className="border border-ivory/40 px-9 py-4 text-center font-body text-xs font-semibold uppercase tracking-[0.12em] text-ivory transition-colors hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             >
               {cta.secondaryLabel}
@@ -39,9 +36,6 @@ export default function BookingBand() {
           </Reveal>
         </div>
       </Container>
-
-      <BookingFormModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
-      <QuizModal open={quizOpen} onClose={() => setQuizOpen(false)} />
     </section>
   );
 }
