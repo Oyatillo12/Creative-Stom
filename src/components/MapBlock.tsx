@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export default function MapBlock() {
   const { clinic, media, mapBlock } = site;

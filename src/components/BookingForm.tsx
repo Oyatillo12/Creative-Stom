@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { site } from "@/content/site";
+import { site } from "@/content";
 import { formatUzPhone } from "@/lib/phone";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 

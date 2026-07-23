@@ -2,7 +2,7 @@ import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import MapBlock from "./MapBlock";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export default function ContactSlot() {
   const { contact } = site.homepage;

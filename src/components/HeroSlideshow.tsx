@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import type { SiteContent } from "@/content/site";
+import type { SiteContent } from "@/content";
 
 const SLIDE_INTERVAL_MS = 6500;
 const CROSSFADE_MS = 1200;

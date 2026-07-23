@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { site } from "@/content/site";
+import { site } from "@/content";
 import Container from "./Container";
 import { useModals } from "./ModalProvider";
 

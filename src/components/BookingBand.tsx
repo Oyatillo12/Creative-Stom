@@ -4,7 +4,7 @@ import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import { useModals } from "./ModalProvider";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export default function BookingBand() {
   const { cta } = site.homepage;

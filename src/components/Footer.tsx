@@ -1,4 +1,4 @@
-import { site } from "@/content/site";
+import { site } from "@/content";
 import Container from "./Container";
 
 export default function Footer() {

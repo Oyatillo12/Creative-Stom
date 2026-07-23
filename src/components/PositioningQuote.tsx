@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export default function PositioningQuote() {
   const { text, author } = site.positioningQuote;

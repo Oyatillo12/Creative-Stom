@@ -1,6 +1,6 @@
 "use client";
 
-import { site } from "@/content/site";
+import { site } from "@/content";
 import { useModals } from "./ModalProvider";
 
 export default function StickyMobileBar() {

@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
 import ModalProvider from "@/components/ModalProvider";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-display",

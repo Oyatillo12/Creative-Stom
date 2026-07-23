@@ -1,7 +1,7 @@
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export default function ReviewsSection() {
   const { reviews: reviewsCopy } = site.homepage;

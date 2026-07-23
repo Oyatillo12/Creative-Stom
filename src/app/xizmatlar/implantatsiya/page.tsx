@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import { BookingFormFields } from "@/components/BookingForm";
 import ServiceHero from "../_components/ServiceHero";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export const metadata: Metadata = {
   title: `${site.implantPage.hero.heading} — ${site.clinic.name}`,

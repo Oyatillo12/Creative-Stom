@@ -9,7 +9,7 @@ import FirstVisitSection from "@/components/FirstVisitSection";
 import BookingBand from "@/components/BookingBand";
 import ReviewsSection from "@/components/ReviewsSection";
 import ContactSlot from "@/components/ContactSlot";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export default function Home() {
   const { hero } = site.homepage;

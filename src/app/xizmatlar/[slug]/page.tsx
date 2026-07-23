@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/Container";
 import ServiceHero from "../_components/ServiceHero";
-import { site } from "@/content/site";
+import { site } from "@/content";
 
 export async function generateStaticParams() {
   const { surgical, general } = site.services;
