@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useId, useReducer, useRef } from "react";
+import { useEffect, useId, useReducer, useRef, useState } from "react";
 import { site } from "@/content";
 import { formatUzPhone } from "@/lib/phone";
+import { submitLead } from "@/lib/lead";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 const CHOICE_FIELDS = ["toothCount", "duration", "hasCt", "timeline"] as const;
@@ -99,6 +100,7 @@ export default function Quiz({ open, onClose }: { open: boolean; onClose: () => 
 function QuizFlow({ onClose }: { onClose: () => void }) {
   const { steps, contactStep, backLabel, closeLabel, successTemplate } = site.quiz;
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const totalSteps = steps.length + 1;
   const progress = ((state.stepIndex + 1) / totalSteps) * 100;
   const isContactStep = state.stepIndex === steps.length;
@@ -138,10 +140,18 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
       {isContactStep ? (
         <form
           className="mt-4 flex flex-col gap-6"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            console.log("quiz submitted", { ...state.answers, name: state.name, phone: state.phone });
-            dispatch({ type: "SUBMIT" });
+            if (status === "sending") return;
+            setStatus("sending");
+            const ok = await submitLead({
+              name: state.name,
+              phone: state.phone,
+              source: "quiz",
+              quizAnswers: state.answers as Record<string, string>,
+            });
+            if (ok) dispatch({ type: "SUBMIT" });
+            else setStatus("error");
           }}
         >
           <label className="block">
@@ -183,11 +193,18 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
             </button>
             <button
               type="submit"
-              className="flex-1 bg-gold px-9 py-4 text-center font-body text-xs font-semibold tracking-[0.12em] text-navy uppercase transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              disabled={status === "sending"}
+              className="flex-1 bg-gold px-9 py-4 text-center font-body text-xs font-semibold tracking-[0.12em] text-navy uppercase transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:opacity-60"
             >
-              {contactStep.submitLabel}
+              {status === "sending" ? site.bookingForm.sendingLabel : contactStep.submitLabel}
             </button>
           </div>
+
+          {status === "error" && (
+            <p role="alert" className="font-body text-sm text-gold">
+              {site.bookingForm.errorMessage}
+            </p>
+          )}
         </form>
       ) : (
         <div className="mt-4">

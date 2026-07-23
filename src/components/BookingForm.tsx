@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { site } from "@/content";
 import { formatUzPhone } from "@/lib/phone";
+import { submitLead } from "@/lib/lead";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" }) {
@@ -11,6 +12,7 @@ export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" 
   const [phone, setPhone] = useState("+998");
   const [doctor, setDoctor] = useState("any");
   const [time, setTime] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [submitted, setSubmitted] = useState(false);
 
   const dark = tone === "dark";
@@ -27,10 +29,19 @@ export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" 
   return (
     <form
       className="flex flex-col gap-6"
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        console.log("booking submitted", { name, phone, doctor, time });
-        setSubmitted(true);
+        if (status === "sending") return;
+        setStatus("sending");
+        const ok = await submitLead({
+          name,
+          phone,
+          source: "booking-modal",
+          doctor: doctor === "any" ? undefined : doctor,
+          time: time || undefined,
+        });
+        if (ok) setSubmitted(true);
+        else setStatus("error");
       }}
     >
       <label className="block">
@@ -97,10 +108,17 @@ export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" 
 
       <button
         type="submit"
-        className="mt-2 bg-gold px-9 py-4 font-body text-xs font-semibold tracking-[0.12em] text-navy uppercase transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        disabled={status === "sending"}
+        className="mt-2 bg-gold px-9 py-4 font-body text-xs font-semibold tracking-[0.12em] text-navy uppercase transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:opacity-60"
       >
-        {bookingForm.submitLabel}
+        {status === "sending" ? bookingForm.sendingLabel : bookingForm.submitLabel}
       </button>
+
+      {status === "error" && (
+        <p role="alert" className={`font-body text-sm ${dark ? "text-gold" : "text-gold-dark"}`}>
+          {bookingForm.errorMessage}
+        </p>
+      )}
     </form>
   );
 }

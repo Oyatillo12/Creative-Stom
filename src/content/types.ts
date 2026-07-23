@@ -216,6 +216,8 @@ export interface SiteContent {
     timeLabel: string;
     timePlaceholder: string;
     submitLabel: string;
+    sendingLabel: string;
     successMessage: string;
+    errorMessage: string;
   };
 }

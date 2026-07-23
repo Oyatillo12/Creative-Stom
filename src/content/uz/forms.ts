@@ -59,5 +59,7 @@ export const bookingForm: SiteContent["bookingForm"] = {
   timeLabel: "Qulay vaqt",
   timePlaceholder: "Masalan, ertaga 15:00",
   submitLabel: "Yuborish",
+  sendingLabel: "Yuborilmoqda…",
   successMessage: "So'rovingiz qabul qilindi. Tez orada bog'lanamiz.",
+  errorMessage: "Xatolik yuz berdi. Qayta urinib ko'ring yoki qo'ng'iroq qiling.",
 };
