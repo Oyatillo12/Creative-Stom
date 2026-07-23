@@ -38,8 +38,8 @@ export default function Header() {
   useEffect(() => {
     const sentinel = document.querySelector("[data-hero-sentinel]");
     if (!sentinel) {
-      setSolid(true);
-      return;
+      const solidTimer = setTimeout(() => setSolid(true), 0);
+      return () => clearTimeout(solidTimer);
     }
     const observer = new IntersectionObserver(
       ([entry]) => {
