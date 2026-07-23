@@ -1,12 +1,14 @@
 "use client";
 
+import { Fragment } from "react";
 import { m } from "motion/react";
 import { EASE_OUT } from "./motion-utils";
 
 // Reveals a display heading word by word, each rising out of an
 // overflow-hidden slot. Splits on plain spaces only, so Uzbek apostrophes
-// (oʻ, g') always stay inside their word. Screen readers get the intact
-// string; the animated copy is aria-hidden.
+// (oʻ, g') always stay inside their word. Spaces live as bare text nodes
+// BETWEEN the inline-block wrappers — inside them they would be trimmed.
+// Screen readers get the intact string; the animated copy is aria-hidden.
 export default function TextReveal({
   text,
   className = "",
@@ -36,7 +38,8 @@ export default function TextReveal({
         }}
       >
         {words.map((word, i) => (
-          <span key={i} className="inline-block">
+          <Fragment key={i}>
+            {i > 0 ? " " : null}
             <span className="inline-block overflow-hidden pb-[0.12em] -mb-[0.12em] align-bottom">
               <m.span
                 className="inline-block"
@@ -48,8 +51,7 @@ export default function TextReveal({
                 {word}
               </m.span>
             </span>
-            {i < words.length - 1 ? " " : null}
-          </span>
+          </Fragment>
         ))}
       </m.span>
     </span>

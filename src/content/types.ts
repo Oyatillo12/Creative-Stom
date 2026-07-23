@@ -205,6 +205,13 @@ export interface SiteContent {
     faq: { eyebrow: string; heading: string };
     cta: { eyebrow: string; heading: string; text: string };
   };
+  clinicPage: {
+    hero: { kicker: string; heading: string };
+    manifesto: { eyebrow: string; heading: string; paragraphs: string[] };
+    standards: { eyebrow: string; heading: string; items: { n: string; title: string; text: string }[] };
+    gallery: { images: { src: string; caption: string }[] };
+    teamCta: { heading: string; text: string; linkLabel: string };
+  };
   cases: CaseItem[];
   faq: FaqItem[];
   reviews: { items: ReviewItem[] };

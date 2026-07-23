@@ -10,6 +10,7 @@ import { services } from "./services";
 import { servicePages, serviceTemplate } from "./service-pages";
 import { pages } from "./pages";
 import { implantPage } from "./implant";
+import { clinicPage } from "./clinic-page";
 import { doctors } from "./doctors";
 import { cases } from "./cases";
 import { faq, reviews, prices } from "./social-proof";
@@ -40,6 +41,7 @@ export const uz: SiteContent = {
   pages,
   homepage,
   implantPage,
+  clinicPage,
   cases,
   faq,
   reviews,
