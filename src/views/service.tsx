@@ -12,7 +12,7 @@ import { JsonLd, breadcrumbJsonLd, faqJsonLd, procedureJsonLd } from "@/lib/json
 
 function getService(locale: Locale, slug: string) {
   const site = getContent(locale);
-  const item = [...site.services.surgical, ...site.services.general].find((service) => service.slug === slug);
+  const item = site.services.find((service) => service.slug === slug);
   const page = site.servicePages.find((service) => service.slug === slug);
   return item && page ? { item, page } : null;
 }

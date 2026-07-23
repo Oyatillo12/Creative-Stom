@@ -3,8 +3,9 @@
 import type { SiteContent } from "../types";
 
 export const meta: SiteContent["meta"] = {
-  title: "Crative Stom — стоматология хирургического уровня в Ташкенте", // TODO
-  description: "[Краткое описание для SEO]", // TODO
+  title: "Creative Stom — клиника хирургической стоматологии в Ташкенте",
+  description:
+    "Creative Stom — клиника, специализирующаяся на имплантации зубов, сложном удалении зубов, удалении зубов мудрости, синус-лифтинге, апикоэктомии и хирургии полости рта. Современные технологии, опытные хирурги-имплантологи, международные стандарты.",
 };
 
 export const clinicText = {
@@ -23,8 +24,6 @@ export const layout: SiteContent["layout"] = {
     services: {
       label: "Услуги",
       allLabel: "Все услуги",
-      surgicalLabel: "Хирургическое направление",
-      generalLabel: "Общая стоматология",
     },
     primary: [
       { key: "doctors", label: "Врачи" },

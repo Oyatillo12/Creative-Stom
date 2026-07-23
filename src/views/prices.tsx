@@ -21,10 +21,9 @@ export default function PricesView({ locale }: { locale: Locale }) {
   const site = getContent(locale);
   const prefix = localePrefix(locale);
   const { pages, prices, services, servicePages, serviceTemplate, homepage } = site;
-  const allServices = [...services.surgical, ...services.general];
   const serviceRows = servicePages.map((page) => ({
     slug: page.slug,
-    title: allServices.find((item) => item.slug === page.slug)?.title ?? page.slug,
+    title: services.find((item) => item.slug === page.slug)?.title ?? page.slug,
     priceFrom: page.priceFrom,
   }));
 

@@ -12,9 +12,9 @@ export const heroSlides: SiteContent["heroSlides"] = [
 
 export const homepage: SiteContent["homepage"] = {
   hero: {
-    eyebrow: "[KLINIKA NOMI] · TOSHKENT", // TODO
-    heading: "Jarrohlik darajasidagi stomatologiya",
-    subhead: "Implantatsiyadan jag'-yuz jarrohiyasigacha — [15]+ yillik tajriba, [3 000]+ operatsiya", // TODO
+    eyebrow: "CREATIVE STOM · TOSHKENT",
+    heading: "Xirurgik stomatologiya klinikasi",
+    subhead: "Implantatsiya, murakkab tish sug'urish, sinus-lifting va og'iz bo'shlig'i jarrohligi — [15]+ yillik tajriba, [3 000]+ operatsiya", // TODO
     ctaPrimary: "Onlayn yozilish",
     ctaSecondary: "Xizmatlar →",
   },
@@ -22,15 +22,14 @@ export const homepage: SiteContent["homepage"] = {
     eyebrow: "Klinika haqida",
     heading: "Klinika emas — jarrohlik markazi",
     statement:
-      "Biz protezlash punkti emas — jarrohlik markazimiz. Har bir davolash rejasi KT tashxisidan boshlanadi va jarroh tomonidan shaxsan tasdiqlanadi.",
+      "Biz faqat jarrohlik bilan shug'ullanamiz — implantatsiyadan og'iz bo'shlig'i jarrohligigacha. Har bir davolash rejasi KT tashxisidan boshlanadi, xalqaro protokollar asosida tuziladi va xirurg-implantolog tomonidan shaxsan tasdiqlanadi.",
     linkLabel: "Batafsil →",
   },
   services: {
     eyebrow: "Xizmatlar",
-    heading: "Jarrohlik — klinikaning o'zagi",
-    intro: "[Qisqa tavsif — nima uchun jarrohlik yo'nalishi klinikani ajratib turadi]", // TODO
-    surgicalLabel: "Jarrohlik yo'nalishi",
-    generalLabel: "Umumiy stomatologiya",
+    heading: "Oltita jarrohlik yo'nalishi",
+    intro:
+      "Klinika faqat xirurgik stomatologiyaga ixtisoslashgan. Har bir yo'nalishda tajribali xirurg-implantologlar xalqaro standartlar asosida ishlaydi — har bir bemorga individual yondashuv bilan.",
     linkLabel: "Batafsil →",
   },
   doctors: {

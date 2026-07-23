@@ -251,39 +251,21 @@ export default function Header() {
             <AnimatePresence>
               {dropdown === "services" && (
                 <m.div key="services-panel" {...panelMotion} className="absolute left-0 top-full pt-3">
-                  <div className={`w-[600px] p-8 ${panelCls}`}>
-                    <div className="grid grid-cols-2 gap-x-10">
-                      {(
-                        [
-                          { label: nav.services.surgicalLabel, items: site.services.surgical },
-                          { label: nav.services.generalLabel, items: site.services.general },
-                        ] as const
-                      ).map((group) => (
-                        <div key={group.label}>
-                          <div
-                            className={`font-body text-[11px] font-semibold uppercase tracking-[0.14em] ${
-                              onDark ? "text-gold" : "text-gold-dark"
+                  <div className={`w-[480px] p-8 ${panelCls}`}>
+                    <ul className="grid grid-cols-2 gap-x-10 gap-y-3">
+                      {site.services.map((s) => (
+                        <li key={s.slug}>
+                          <Link
+                            href={`${navHref("services")}/${s.slug}`}
+                            className={`text-sm leading-snug transition-colors ${
+                              onDark ? "text-ivory/90 hover:text-gold" : "text-ink hover:text-gold-dark"
                             }`}
                           >
-                            {group.label}
-                          </div>
-                          <ul className="mt-4 flex flex-col gap-2.5">
-                            {group.items.map((s) => (
-                              <li key={s.slug}>
-                                <Link
-                                  href={`${navHref("services")}/${s.slug}`}
-                                  className={`text-sm leading-snug transition-colors ${
-                                    onDark ? "text-ivory/90 hover:text-gold" : "text-ink hover:text-gold-dark"
-                                  }`}
-                                >
-                                  {s.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                            {s.title}
+                          </Link>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                     <div className={`mt-7 border-t pt-5 ${onDark ? "border-ivory/10" : "border-line"}`}>
                       <Link
                         href={navHref("services")}

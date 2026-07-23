@@ -5,8 +5,9 @@
 import type { SiteContent } from "../types";
 
 export const meta: SiteContent["meta"] = {
-  title: "Crative Stom — Toshkentda jarrohlik darajasidagi stomatologiya", // TODO
-  description: "[SEO uchun qisqa tavsif]", // TODO
+  title: "Creative Stom — Toshkentda xirurgik stomatologiya klinikasi",
+  description:
+    "Creative Stom — tish implantatsiyasi, murakkab tish sug'urish, aql tishini olib tashlash, sinus-lifting, apikoektomiya va og'iz bo'shlig'i jarrohligiga ixtisoslashgan klinika. Zamonaviy texnologiyalar, tajribali xirurg-implantologlar, xalqaro standartlar.",
 };
 
 /** Localized clinic text — merged with siteConfig.clinic facts in ./index.ts. */
@@ -26,8 +27,6 @@ export const layout: SiteContent["layout"] = {
     services: {
       label: "Xizmatlar",
       allLabel: "Barcha xizmatlar",
-      surgicalLabel: "Jarrohlik yo'nalishi",
-      generalLabel: "Umumiy stomatologiya",
     },
     primary: [
       { key: "doctors", label: "Shifokorlar" },

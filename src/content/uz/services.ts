@@ -1,18 +1,14 @@
-// UZ — service catalogue. Adding a service = adding one object here.
+// UZ — service catalogue. The clinic is purely surgical: six directions,
+// implantatsiya is the flagship (dedicated pillar page). Adding a service =
+// adding one object here + a servicePages entry.
 
 import type { SiteContent } from "../types";
 
-export const services: SiteContent["services"] = {
-  surgical: [
-    { slug: "implantatsiya", title: "Tish implantatsiyasi (All-on-4 / All-on-6)", line: "[qisqa tavsif]" }, // TODO
-    { slug: "suyak-plastikasi", title: "Suyak plastikasi va sinus-lifting", line: "[qisqa tavsif]" }, // TODO
-    { slug: "tish-olib-tashlash", title: "Murakkab tish olib tashlash", line: "[qisqa tavsif]" }, // TODO
-    { slug: "jag-kistalari", title: "Jag' kistalari", line: "[qisqa tavsif]" }, // TODO
-    { slug: "jag-yuz-jarrohligi", title: "Og'iz va jag'-yuz jarrohligi", line: "[qisqa tavsif]" }, // TODO
-  ],
-  general: [
-    { slug: "protezlash", title: "Protezlash va restavratsiya", line: "[qisqa tavsif]" }, // TODO
-    { slug: "terapevtik-davolash", title: "Terapevtik davolash", line: "[qisqa tavsif]" }, // TODO
-    { slug: "professional-gigiena", title: "Professional gigiena", line: "[qisqa tavsif]" }, // TODO
-  ],
-};
+export const services: SiteContent["services"] = [
+  { slug: "implantatsiya", title: "Tish implantatsiyasi", line: "Bir tishdan All-on-4 / All-on-6 gacha" },
+  { slug: "tish-olib-tashlash", title: "Murakkab tish sug'urish", line: "Singan, yotiq va qiyshiq ildizli tishlar" },
+  { slug: "aql-tishi-olib-tashlash", title: "Aql tishini olib tashlash", line: "Retinirlangan sakkizinchi tishlar ham" },
+  { slug: "sinus-lifting", title: "Sinus-lifting", line: "Implant oldidan suyak hajmini tiklash" },
+  { slug: "apikoektomiya", title: "Apikoektomiya", line: "Ildiz uchi rezeksiyasi — tish saqlanadi" },
+  { slug: "ogiz-jarrohligi", title: "Og'iz bo'shlig'i jarrohligi", line: "Jag' kistalari va boshqa jarrohlik muolajalari" },
+];

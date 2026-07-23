@@ -99,7 +99,7 @@ export interface SiteContent {
   };
   layout: {
     nav: {
-      services: { label: string; allLabel: string; surgicalLabel: string; generalLabel: string };
+      services: { label: string; allLabel: string };
       primary: NavLink[];
       clinic: { label: string; items: NavLink[] };
     };
@@ -111,10 +111,7 @@ export interface SiteContent {
   };
   heroSlides: { image: string; caption: string }[];
   doctors: Doctor[];
-  services: {
-    surgical: ServiceItem[];
-    general: ServiceItem[];
-  };
+  services: ServiceItem[];
   media: {
     aboutInterior: string;
     processWide: string;
@@ -149,7 +146,7 @@ export interface SiteContent {
   };
   pages: {
     shared: { homeLabel: string };
-    services: { breadcrumb: string; title: string; intro: string };
+    services: { breadcrumb: string; title: string; intro: string; flagshipEyebrow: string };
     doctors: {
       breadcrumb: string;
       title: string;
@@ -175,7 +172,7 @@ export interface SiteContent {
   homepage: {
     hero: { eyebrow: string; heading: string; subhead: string; ctaPrimary: string; ctaSecondary: string };
     about: { eyebrow: string; heading: string; statement: string; linkLabel: string };
-    services: { eyebrow: string; heading: string; intro: string; surgicalLabel: string; generalLabel: string; linkLabel: string };
+    services: { eyebrow: string; heading: string; intro: string; linkLabel: string };
     doctors: { eyebrow: string; heading: string; expandingLabel: string; expandingText: string; linkLabel: string };
     cases: { eyebrow: string; heading: string; beforeLabel: string; afterLabel: string; linkLabel: string };
     credentials: { eyebrow: string; heading: string; certAlt: string; implantSystemsLabel: string; implantSystems: string[] };

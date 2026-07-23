@@ -9,7 +9,8 @@ export const pages: SiteContent["pages"] = {
   services: {
     breadcrumb: "Xizmatlar",
     title: "Xizmatlar",
-    intro: "[Qisqa kirish — xizmatlar sahifasi uchun 1–2 jumla]", // TODO
+    intro: "Bizda umumiy stomatologiya yo'q — barcha xizmatlar jarrohlik. Har bir muolaja KT tashxisi va jarroh tasdiqlagan reja asosida o'tadi.",
+    flagshipEyebrow: "Asosiy yo'nalish",
   },
   doctors: {
     breadcrumb: "Shifokorlar",
@@ -39,7 +40,8 @@ export const pages: SiteContent["pages"] = {
   clinic: {
     breadcrumb: "Klinika haqida",
     title: "Klinika haqida",
-    intro: "[Qisqa kirish — klinika tarixi va yondashuvi haqida 1–2 jumla]", // TODO
+    intro:
+      "Creative Stom — tish implantatsiyasi va og'iz bo'shlig'i jarrohligiga ixtisoslashgan klinika. Zamonaviy texnologiyalar, xalqaro standartlar va har bir bemorga individual yondashuv — bizning ustuvor maqsadimiz.",
   },
   contact: {
     breadcrumb: "Kontakt",
