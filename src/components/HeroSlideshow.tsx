@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { m, useScroll, useTransform } from "motion/react";
 import Container from "./Container";
+import TextReveal from "./motion/TextReveal";
+import { useModals } from "./ModalProvider";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import type { SiteContent } from "@/content";
 
@@ -36,6 +38,7 @@ export default function HeroSlideshow({
 }: HeroSlideshowProps) {
   const [index, setIndex] = useState(0);
   const reducedMotion = useReducedMotion();
+  const { openBooking } = useModals();
   const zoomRefs = useRef<(HTMLDivElement | null)[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -134,14 +137,9 @@ export default function HeroSlideshow({
             >
               {eyebrow}
             </m.span>
-            <m.h1
-              initial={{ opacity: 0, x: -48 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={enter(1)}
-              className="mt-5 max-w-4xl text-[clamp(2.6rem,6vw,5rem)] font-medium leading-[1.05] font-display text-ivory"
-            >
-              {heading}
-            </m.h1>
+            <h1 className="mt-5 max-w-4xl text-[clamp(2.6rem,6vw,5rem)] font-medium leading-[1.05] font-display text-ivory">
+              <TextReveal text={heading} delay={0.3} stagger={0.08} amount={0.1} />
+            </h1>
             <m.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -156,12 +154,14 @@ export default function HeroSlideshow({
               transition={enter(3)}
               className="mt-10 flex flex-wrap items-center gap-8"
             >
-              <a
-                href="#booking"
+              <m.button
+                type="button"
+                whileTap={{ scale: 0.98 }}
+                onClick={openBooking}
                 className="bg-gold px-9 py-4 font-body text-xs font-semibold uppercase tracking-[0.12em] text-navy transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               >
                 {ctaPrimary}
-              </a>
+              </m.button>
               <a
                 href="#services"
                 className="border-b border-ivory/40 pb-1 font-body text-sm font-medium text-ivory transition-colors hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
@@ -172,8 +172,21 @@ export default function HeroSlideshow({
           </m.div>
         </Container>
 
-        <div className="absolute bottom-8 left-6 font-body text-xs font-semibold tracking-[0.2em] text-gold md:bottom-10 md:left-10">
-          {String(index + 1).padStart(2, "0")} — {String(slides.length).padStart(2, "0")}
+        <div className="absolute bottom-8 left-6 flex items-center gap-5 md:bottom-10 md:left-10">
+          <span className="font-body text-xs font-semibold tracking-[0.2em] text-gold">
+            {String(index + 1).padStart(2, "0")} — {String(slides.length).padStart(2, "0")}
+          </span>
+          {!reducedMotion && slides.length > 1 && (
+            <span aria-hidden="true" className="relative block h-px w-24 overflow-hidden bg-ivory/25">
+              <m.span
+                key={index}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: SLIDE_INTERVAL_MS / 1000, ease: "linear" }}
+                className="absolute inset-0 origin-left bg-gold"
+              />
+            </span>
+          )}
         </div>
       </div>
     </section>

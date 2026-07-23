@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import HeroSlideshow from "@/components/HeroSlideshow";
-import AboutTeaser from "@/components/AboutTeaser";
+import ProofBar from "@/components/ProofBar";
+import ClinicShowcase from "@/components/ClinicShowcase";
 import ServicesSection from "@/components/ServicesSection";
 import DoctorsSection from "@/components/DoctorsSection";
-import FeaturedCase from "@/components/FeaturedCase";
+import ResultsSection from "@/components/ResultsSection";
 import FirstVisitSection from "@/components/FirstVisitSection";
-import BookingBand from "@/components/BookingBand";
 import ReviewsSection from "@/components/ReviewsSection";
+import FaqTeaser from "@/components/FaqTeaser";
+import BookingBand from "@/components/BookingBand";
 import ContactSlot from "@/components/ContactSlot";
 import { getContent, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
@@ -20,6 +22,8 @@ export function homeMetadata(locale: Locale): Metadata {
   };
 }
 
+// Conversion path: value → proof → catalogue → trust → results → process →
+// social proof → objection removal → booking → directions.
 export default function HomeView({ locale }: { locale: Locale }) {
   const site = getContent(locale);
   const { hero } = site.homepage;
@@ -34,13 +38,15 @@ export default function HomeView({ locale }: { locale: Locale }) {
         ctaPrimary={hero.ctaPrimary}
         ctaSecondary={hero.ctaSecondary}
       />
-      <AboutTeaser locale={locale} />
+      <ProofBar locale={locale} />
+      <ClinicShowcase locale={locale} />
       <ServicesSection locale={locale} />
       <DoctorsSection locale={locale} />
-      <FeaturedCase locale={locale} />
+      <ResultsSection locale={locale} />
       <FirstVisitSection locale={locale} />
-      <BookingBand />
       <ReviewsSection locale={locale} />
+      <FaqTeaser locale={locale} />
+      <BookingBand />
       <ContactSlot locale={locale} />
     </>
   );

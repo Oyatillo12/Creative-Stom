@@ -168,15 +168,20 @@ export interface SiteContent {
   homepage: {
     hero: { eyebrow: string; heading: string; subhead: string; ctaPrimary: string; ctaSecondary: string };
     about: { eyebrow: string; heading: string; statement: string; linkLabel: string };
-    services: { eyebrow: string; heading: string; intro: string; linkLabel: string };
+    services: { eyebrow: string; heading: string; intro: string; linkLabel: string; bookLabel: string };
     doctors: { eyebrow: string; heading: string; linkLabel: string };
     cases: { eyebrow: string; heading: string; beforeLabel: string; afterLabel: string; linkLabel: string };
-    firstVisit: { eyebrow: string; heading: string; steps: { n: string; title: string; text: string }[] };
+    firstVisit: {
+      eyebrow: string;
+      heading: string;
+      steps: { n: string; title: string; text: string }[];
+      ctaLabel: string;
+    };
     reviews: { eyebrow: string; heading: string; prevLabel: string; nextLabel: string };
     faq: { eyebrow: string; heading: string };
-    prices: { eyebrow: string; heading: string };
+    prices: { eyebrow: string; heading: string; linkLabel: string };
     quiz: { eyebrow: string; heading: string; intro: string; startLabel: string };
-    cta: { eyebrow: string; heading: string; text: string; primaryLabel: string; secondaryLabel: string };
+    cta: { eyebrow: string; heading: string; text: string; secondaryLabel: string };
     contact: { eyebrow: string; heading: string };
   };
   implantPage: {

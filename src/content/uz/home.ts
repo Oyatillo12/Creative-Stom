@@ -31,6 +31,7 @@ export const homepage: SiteContent["homepage"] = {
     intro:
       "Klinika faqat xirurgik stomatologiyaga ixtisoslashgan. Har bir yo'nalishda tajribali xirurg-implantologlar xalqaro standartlar asosida ishlaydi — har bir bemorga individual yondashuv bilan.",
     linkLabel: "Batafsil →",
+    bookLabel: "Qabulga yozilish",
   },
   doctors: {
     eyebrow: "Shifokorlar",
@@ -53,6 +54,7 @@ export const homepage: SiteContent["homepage"] = {
       { n: "03", title: "Davolash rejasi", text: "Jarroh tasdiqlagan reja va aniq narx" },
       { n: "04", title: "Davolash", text: "Reja asosida, bosqichma-bosqich nazoratda" },
     ],
+    ctaLabel: "Birinchi tashrifga yozilish",
   },
   reviews: {
     eyebrow: "Sharhlar",
@@ -67,6 +69,7 @@ export const homepage: SiteContent["homepage"] = {
   prices: {
     eyebrow: "Narxlar",
     heading: "[Narxlar sarlavhasi]", // TODO
+    linkLabel: "Narxlarni ko'rish →",
   },
   quiz: {
     eyebrow: "Test",
@@ -76,9 +79,8 @@ export const homepage: SiteContent["homepage"] = {
   },
   cta: {
     eyebrow: "Yozilish",
-    heading: "[Yakuniy CTA sarlavhasi]", // TODO
-    text: "[Yakuniy CTA matni]", // TODO
-    primaryLabel: "Vaqt tanlab yozilish",
+    heading: "Konsultatsiyaga yoziling",
+    text: "So'rovni qoldiring — 15 daqiqada qo'ng'iroq qilamiz, KT tashxis va jarroh konsultatsiyasi uchun qulay vaqtni kelishamiz.",
     secondaryLabel: "60 soniyalik so'rovnoma",
   },
   contact: {

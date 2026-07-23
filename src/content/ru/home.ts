@@ -31,6 +31,7 @@ export const homepage: SiteContent["homepage"] = {
     intro:
       "Клиника специализируется только на хирургической стоматологии. По каждому направлению работают опытные хирурги-имплантологи по международным стандартам — с индивидуальным подходом к каждому пациенту.",
     linkLabel: "Подробнее →",
+    bookLabel: "Записаться на приём",
   },
   doctors: {
     eyebrow: "Врачи",
@@ -53,6 +54,7 @@ export const homepage: SiteContent["homepage"] = {
       { n: "03", title: "План лечения", text: "План, утверждённый хирургом, и точная цена" },
       { n: "04", title: "Лечение", text: "По плану, поэтапно, под контролем" },
     ],
+    ctaLabel: "Записаться на первый визит",
   },
   reviews: {
     eyebrow: "Отзывы",
@@ -67,6 +69,7 @@ export const homepage: SiteContent["homepage"] = {
   prices: {
     eyebrow: "Цены",
     heading: "[Заголовок раздела цен]", // TODO
+    linkLabel: "Смотреть цены →",
   },
   quiz: {
     eyebrow: "Тест",
@@ -76,9 +79,8 @@ export const homepage: SiteContent["homepage"] = {
   },
   cta: {
     eyebrow: "Запись",
-    heading: "[Финальный заголовок CTA]", // TODO
-    text: "[Финальный текст CTA]", // TODO
-    primaryLabel: "Записаться, выбрав время",
+    heading: "Запишитесь на консультацию",
+    text: "Оставьте заявку — перезвоним в течение 15 минут и согласуем удобное время КТ-диагностики и консультации хирурга.",
     secondaryLabel: "Опрос за 60 секунд",
   },
   contact: {
