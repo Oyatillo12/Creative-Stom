@@ -53,7 +53,7 @@ export default function CasesIndexView({ locale }: { locale: Locale }) {
                     {caseItem.service}
                   </div>
                   <h2 className="mt-4 font-display text-3xl text-navy md:text-4xl">{caseItem.title}</h2>
-                  <p className="mt-5 max-w-md font-body text-base leading-relaxed text-muted">
+                  <p className="mt-5 max-w-md font-body text-base leading-relaxed text-ink/80">
                     {caseItem.story.problem}
                   </p>
                   <Link

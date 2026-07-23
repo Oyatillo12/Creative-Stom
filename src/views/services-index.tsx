@@ -5,6 +5,8 @@ import Container from "@/components/Container";
 import PageHero from "@/components/PageHero";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
+import Parallax from "@/components/motion/Parallax";
+import { RevealGroup, RevealItem } from "@/components/motion/RevealGroup";
 import BookingBand from "@/components/BookingBand";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
@@ -32,8 +34,8 @@ export default function ServicesIndexView({ locale }: { locale: Locale }) {
         intro={pages.services.intro}
       />
 
-      {/* 01 — flagship: implantation feature split on white */}
-      <section className="bg-white py-24 md:py-32">
+      {/* 01 — flagship: implantation feature split on bone */}
+      <section className="bg-bone py-24 md:py-32">
         <Container className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <div>
@@ -54,17 +56,19 @@ export default function ServicesIndexView({ locale }: { locale: Locale }) {
             </div>
           </Reveal>
           <Reveal delayMs={100}>
-            <Link href={`${prefix}/xizmatlar/${flagship.slug}`} className="group block">
-              <div className="relative aspect-[4/3] overflow-hidden border border-line">
-                <Image
-                  src={site.media.implantHero}
-                  alt={flagship.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  sizes="(min-width: 1024px) 580px, 100vw"
-                />
-              </div>
-            </Link>
+            <Parallax range={24}>
+              <Link href={`${prefix}/xizmatlar/${flagship.slug}`} className="group block">
+                <div className="relative aspect-[4/3] overflow-hidden border border-line">
+                  <Image
+                    src={site.media.implantHero}
+                    alt={flagship.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    sizes="(min-width: 1024px) 580px, 100vw"
+                  />
+                </div>
+              </Link>
+            </Parallax>
           </Reveal>
         </Container>
       </section>
@@ -72,23 +76,36 @@ export default function ServicesIndexView({ locale }: { locale: Locale }) {
       {/* 02–06 — the rest of the surgical catalogue: numbered rows on ivory */}
       <section className="bg-ivory py-24 md:py-32">
         <Container>
-          <div>
-            {rest.map((item, i) => (
-              <Reveal key={item.slug} delayMs={i * 60}>
-                <Link
-                  href={`${prefix}/xizmatlar/${item.slug}`}
-                  className="group -mx-2 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-line px-2 py-7 transition-colors last:border-b hover:bg-white sm:flex-nowrap"
-                >
-                  <span className="w-8 shrink-0 font-body text-xs text-muted">{String(i + 2).padStart(2, "0")}</span>
-                  <span className="flex-1 font-display text-2xl leading-snug text-navy md:text-3xl">{item.title}</span>
-                  <span className="hidden max-w-[260px] font-body text-sm text-muted sm:block">{item.line}</span>
-                  <span className="ml-auto shrink-0 font-body text-xs font-semibold uppercase tracking-[0.14em] text-gold-dark transition-transform duration-200 group-hover:translate-x-1 sm:ml-0">
-                    {homepage.services.linkLabel}
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <RevealGroup stagger={0.07} className="border-b border-line">
+            {rest.map((item, i) => {
+              const priceFrom = site.servicePages.find((p) => p.slug === item.slug)?.priceFrom;
+              return (
+                <RevealItem key={item.slug}>
+                  <Link
+                    href={`${prefix}/xizmatlar/${item.slug}`}
+                    className="group -mx-2 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-line px-2 py-7 transition-colors hover:bg-bone/60 sm:flex-nowrap"
+                  >
+                    <span className="w-8 shrink-0 font-body text-xs text-muted">{String(i + 2).padStart(2, "0")}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-display text-2xl leading-snug text-navy md:text-3xl">
+                        {item.title}
+                      </span>
+                      <span className="mt-1.5 block font-body text-sm text-ink/60">{item.line}</span>
+                    </span>
+                    {priceFrom ? (
+                      <span className="shrink-0 font-body text-sm text-ink/70">{priceFrom}</span>
+                    ) : null}
+                    <span
+                      aria-hidden="true"
+                      className="shrink-0 font-body text-lg text-gold-dark transition-transform duration-200 group-hover:translate-x-1.5"
+                    >
+                      →
+                    </span>
+                  </Link>
+                </RevealItem>
+              );
+            })}
+          </RevealGroup>
         </Container>
       </section>
 

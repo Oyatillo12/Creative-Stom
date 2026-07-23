@@ -82,7 +82,7 @@ export default function ImplantView({ locale }: { locale: Locale }) {
             </div>
             <div>
               <p className="font-display text-2xl leading-snug text-navy md:text-3xl">{implantPage.attribution.text}</p>
-              <p className="mt-3 font-body text-sm text-muted">{implantPage.attribution.credential}</p>
+              <p className="mt-3 font-body text-sm text-ink/60">{implantPage.attribution.credential}</p>
             </div>
           </Reveal>
         </Container>
@@ -96,7 +96,7 @@ export default function ImplantView({ locale }: { locale: Locale }) {
           </Reveal>
 
           <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-[1fr_1fr] lg:gap-16">
-            <Reveal className="bg-navy p-10 text-ivory md:p-14">
+            <Reveal className="bg-navy-2 p-10 text-ivory md:p-14">
               <span className="font-body text-xs font-semibold tracking-[0.24em] text-gold uppercase">
                 {implantPage.methods.featured.badge}
               </span>
@@ -129,7 +129,7 @@ export default function ImplantView({ locale }: { locale: Locale }) {
                   className="border-t border-line py-8 first:border-t-0 md:border-t md:first:border-t last:border-b"
                 >
                   <div className="font-display text-2xl text-navy md:text-3xl">{method.name}</div>
-                  <p className="mt-3 max-w-md font-body text-sm leading-relaxed text-muted">{method.description}</p>
+                  <p className="mt-3 max-w-md font-body text-sm leading-relaxed text-ink/70">{method.description}</p>
                   <div className="mt-4 font-body text-sm text-ink">
                     {implantPage.methods.durationLabel}: {method.duration} · {method.price} ·{" "}
                     <a href="#booking" className="font-semibold text-gold-dark transition-colors hover:text-navy">
@@ -138,7 +138,7 @@ export default function ImplantView({ locale }: { locale: Locale }) {
                   </div>
                 </div>
               ))}
-              <p className="mt-8 max-w-sm font-body text-sm leading-relaxed text-muted">{implantPage.methods.note}</p>
+              <p className="mt-8 max-w-sm font-body text-sm leading-relaxed text-ink/70">{implantPage.methods.note}</p>
             </Reveal>
           </div>
         </Container>
@@ -156,7 +156,7 @@ export default function ImplantView({ locale }: { locale: Locale }) {
               <Reveal key={step.n} delayMs={i * 70} className="border-t border-line pt-6">
                 <div className="font-body text-xs font-semibold tracking-[0.2em] text-gold-dark">{step.n}</div>
                 <div className="mt-4 font-display text-2xl text-navy">{step.title}</div>
-                <div className="mt-3 font-body text-sm text-muted">{step.time}</div>
+                <div className="mt-3 font-body text-sm text-ink/60">{step.time}</div>
               </Reveal>
             ))}
           </div>
@@ -235,7 +235,7 @@ export default function ImplantView({ locale }: { locale: Locale }) {
                       +
                     </span>
                   </summary>
-                  <p className="mt-4 max-w-2xl font-body text-sm leading-relaxed text-muted md:text-base">
+                  <p className="mt-4 max-w-2xl font-body text-sm leading-relaxed text-ink/80 md:text-base">
                     {item.answer}
                   </p>
                 </details>
@@ -258,7 +258,7 @@ export default function ImplantView({ locale }: { locale: Locale }) {
               />
             </Reveal>
             <Reveal>
-              <BookingFormFields tone="dark" />
+              <BookingFormFields tone="dark" source="booking-band" />
             </Reveal>
           </div>
         </Container>

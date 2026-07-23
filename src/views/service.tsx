@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
+import { RevealGroup, RevealItem } from "@/components/motion/RevealGroup";
 import BookingBand from "@/components/BookingBand";
 import ServiceHero from "@/components/ServiceHero";
 import { getContent, localePrefix, type Locale } from "@/content";
@@ -90,20 +91,20 @@ export default function ServiceView({ locale, slug }: { locale: Locale; slug: st
           <Reveal>
             <SectionHeading eyebrow={t.processEyebrow} heading={t.processHeading} tone="dark" />
           </Reveal>
-          <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 md:mt-20">
-            {page.steps.map((step, i) => (
-              <Reveal key={step.n} delayMs={i * 70} className="border-t border-ivory/15 pt-6">
+          <RevealGroup stagger={0.09} className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 md:mt-20">
+            {page.steps.map((step) => (
+              <RevealItem key={step.n} className="border-t border-ivory/15 pt-6">
                 <div className="font-body text-xs font-semibold tracking-[0.2em] text-gold">{step.n}</div>
                 <div className="mt-4 font-display text-2xl">{step.title}</div>
-                <p className="mt-3 font-body text-sm leading-relaxed text-ivory/60">{step.text}</p>
-              </Reveal>
+                <p className="mt-3 font-body text-sm leading-relaxed text-ivory/70">{step.text}</p>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </Container>
       </section>
 
-      {/* Price note: single statement row on white */}
-      <section className="bg-white py-24 md:py-32">
+      {/* Price note: single statement row on bone */}
+      <section className="bg-bone py-24 md:py-32">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[380px_1fr] lg:gap-20">
             <Reveal>
@@ -114,10 +115,10 @@ export default function ServiceView({ locale, slug }: { locale: Locale; slug: st
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
                   <span className="font-display text-4xl text-navy md:text-5xl">{page.priceFrom}</span>
                   {t.priceFromLabel && (
-                    <span className="font-body text-sm uppercase tracking-[0.14em] text-muted">{t.priceFromLabel}</span>
+                    <span className="font-body text-sm uppercase tracking-[0.14em] text-ink/60">{t.priceFromLabel}</span>
                   )}
                 </div>
-                <p className="mt-6 max-w-xl font-body text-sm leading-relaxed text-muted">{site.prices.disclaimer}</p>
+                <p className="mt-6 max-w-xl font-body text-sm leading-relaxed text-ink/70">{site.prices.disclaimer}</p>
                 <Link
                   href={`${prefix}/narxlar`}
                   className="mt-6 inline-block font-body text-xs font-semibold uppercase tracking-[0.14em] text-gold-dark transition-colors hover:text-navy"
@@ -140,7 +141,7 @@ export default function ServiceView({ locale, slug }: { locale: Locale; slug: st
             {page.faq.map((faqItem, i) => (
               <Reveal key={i} delayMs={i * 70} className="border-t border-line py-8 last:border-b">
                 <div className="font-display text-xl text-navy md:text-2xl">{faqItem.question}</div>
-                <p className="mt-4 font-body text-base leading-relaxed text-muted">{faqItem.answer}</p>
+                <p className="mt-4 font-body text-base leading-relaxed text-ink/80">{faqItem.answer}</p>
               </Reveal>
             ))}
           </div>

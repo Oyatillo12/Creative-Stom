@@ -58,7 +58,7 @@ export default function DoctorsIndexView({ locale }: { locale: Locale }) {
                     {doctor.role}
                   </div>
                   <h2 className="mt-4 font-display text-3xl text-navy md:text-5xl">{doctor.name}</h2>
-                  <div className="mt-4 font-body text-sm text-muted">{doctor.regalia}</div>
+                  <div className="mt-4 font-body text-sm text-ink/70">{doctor.regalia}</div>
 
                   <div className="mt-8 max-w-2xl">
                     {doctor.bio.map((paragraph, j) => (

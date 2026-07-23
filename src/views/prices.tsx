@@ -52,13 +52,13 @@ export default function PricesView({ locale }: { locale: Locale }) {
             ))}
           </div>
           <Reveal className="mt-10">
-            <p className="max-w-xl font-body text-sm leading-relaxed text-muted">{prices.disclaimer}</p>
+            <p className="max-w-xl font-body text-sm leading-relaxed text-ink/70">{prices.disclaimer}</p>
           </Reveal>
         </Container>
       </section>
 
-      {/* Per-service table rows on white */}
-      <section className="bg-white py-24 md:py-32">
+      {/* Per-service table rows on bone */}
+      <section className="bg-bone py-24 md:py-32">
         <Container>
           <Reveal>
             <div className="flex items-baseline justify-between gap-6 border-b-2 border-navy pb-4 font-body text-xs font-semibold uppercase tracking-[0.24em] text-navy">
