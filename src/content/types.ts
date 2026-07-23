@@ -75,7 +75,8 @@ export interface SiteContent {
   layout: {
     nav: string[];
     topBar: { languageToggle: string; telegramLabel: string };
-    header: { ctaLabel: string };
+    header: { ctaLabel: string; menuLabel: string; closeLabel: string };
+    preloader: { ariaLabel: string };
     stickyBar: { call: string; telegram: string; book: string };
     footer: { licenseLabel: string; rightsNote: string };
   };

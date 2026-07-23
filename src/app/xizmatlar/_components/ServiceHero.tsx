@@ -31,6 +31,7 @@ export default function ServiceHero({
     <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden bg-navy">
       <Image src={image} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-navy/55" />
+      <span data-hero-sentinel aria-hidden className="absolute bottom-24 left-0 h-px w-px" />
 
       <div className="relative z-10 flex h-full flex-col justify-end">
         <Container className="pb-14 md:pb-20">

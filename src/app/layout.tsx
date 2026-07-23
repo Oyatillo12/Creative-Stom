@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
 import ModalProvider from "@/components/ModalProvider";
+import MotionProvider from "@/components/MotionProvider";
+import Preloader from "@/components/Preloader";
 import { site } from "@/content";
+import { siteConfig } from "@/config/site.config";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-display",
@@ -33,13 +35,17 @@ export default function RootLayout({
   return (
     <html lang="uz" className={`${playfairDisplay.variable} ${inter.variable}`}>
       <body className="flex min-h-screen flex-col bg-ivory font-body text-ink antialiased">
-        <ModalProvider>
-          <TopBar />
-          <Header />
-          <main className="flex-1 pb-16 md:pb-0">{children}</main>
-          <Footer />
-          <StickyMobileBar />
-        </ModalProvider>
+        <MotionProvider>
+          <ModalProvider>
+            {siteConfig.features.preloader && (
+              <Preloader brand={site.clinic.name} ariaLabel={site.layout.preloader.ariaLabel} />
+            )}
+            <Header />
+            <main className="flex-1 pb-16 md:pb-0">{children}</main>
+            <Footer />
+            {siteConfig.features.stickyMobileBar && <StickyMobileBar />}
+          </ModalProvider>
+        </MotionProvider>
       </body>
     </html>
   );

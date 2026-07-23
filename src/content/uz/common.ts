@@ -29,6 +29,11 @@ export const layout: SiteContent["layout"] = {
   },
   header: {
     ctaLabel: "Onlayn yozilish",
+    menuLabel: "Menyu",
+    closeLabel: "Yopish",
+  },
+  preloader: {
+    ariaLabel: "Sahifa yuklanmoqda",
   },
   stickyBar: {
     call: "Qo'ng'iroq",
