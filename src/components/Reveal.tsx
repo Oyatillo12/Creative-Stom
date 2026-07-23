@@ -1,49 +1,35 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { m } from "motion/react";
+import { EASE_OUT, revealOffset, type RevealDirection } from "./motion/motion-utils";
 
 export default function Reveal({
   children,
   className = "",
   delayMs = 0,
+  direction = "up",
+  distance = 24,
+  duration = 0.6,
+  amount = 0.2,
 }: {
   children: ReactNode;
   className?: string;
   delayMs?: number;
+  direction?: RevealDirection;
+  distance?: number;
+  duration?: number;
+  amount?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [reducedMotion]);
-
-  const visible = reducedMotion || inView;
-
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-500 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}
-      style={{ transitionDelay: visible && delayMs ? `${delayMs}ms` : "0ms" }}
+    <m.div
+      className={className}
+      initial={{ opacity: 0, ...revealOffset(direction, distance) }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, amount }}
+      transition={{ duration, delay: delayMs / 1000, ease: EASE_OUT }}
     >
       {children}
-    </div>
+    </m.div>
   );
 }
