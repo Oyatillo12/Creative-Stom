@@ -7,6 +7,9 @@ export interface Doctor {
   role: string;
   regalia: string;
   photo: string;
+  bio: string[];
+  education: string[];
+  focus: string[];
 }
 
 export interface ServiceItem {
@@ -20,6 +23,20 @@ export interface CaseItem {
   title: string;
   before: string;
   after: string;
+  service: string;
+  story: { problem: string; plan: string; result: string };
+}
+
+export interface ServicePageContent {
+  slug: string;
+  heroImage: string;
+  intro: string;
+  overviewHeading: string;
+  overviewBody: string;
+  facts: string[];
+  steps: { n: string; title: string; text: string }[];
+  faq: FaqItem[];
+  priceFrom: string;
 }
 
 export interface FaqItem {
@@ -104,11 +121,44 @@ export interface SiteContent {
     yandexLabel: string;
     twoGisLabel: string;
   };
-  servicePageStub: {
+  servicePages: ServicePageContent[];
+  serviceTemplate: {
     breadcrumbLabel: string;
-    genericHeading: string;
-    message: string;
-    backLabel: string;
+    overviewEyebrow: string;
+    factsLabel: string;
+    processEyebrow: string;
+    processHeading: string;
+    priceEyebrow: string;
+    priceHeading: string;
+    priceFromLabel: string;
+    faqEyebrow: string;
+    faqHeading: string;
+    allServicesLabel: string;
+  };
+  pages: {
+    shared: { homeLabel: string };
+    services: { breadcrumb: string; title: string; intro: string };
+    doctors: {
+      breadcrumb: string;
+      title: string;
+      intro: string;
+      educationLabel: string;
+      focusLabel: string;
+      allDoctorsLabel: string;
+    };
+    cases: {
+      breadcrumb: string;
+      title: string;
+      intro: string;
+      openLabel: string;
+      problemLabel: string;
+      planLabel: string;
+      resultLabel: string;
+      allCasesLabel: string;
+    };
+    prices: { breadcrumb: string; title: string; intro: string; serviceColumn: string; priceColumn: string };
+    clinic: { breadcrumb: string; title: string; intro: string };
+    contact: { breadcrumb: string; title: string; intro: string };
   };
   homepage: {
     hero: { eyebrow: string; heading: string; subhead: string; ctaPrimary: string; ctaSecondary: string };

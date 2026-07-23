@@ -23,7 +23,7 @@ export default function ImplantatsiyaPage() {
         imageAlt={implantPage.hero.label}
         breadcrumb={[
           { label: implantPage.breadcrumb[0], href: "/" },
-          { label: implantPage.breadcrumb[1], href: "/#services" },
+          { label: implantPage.breadcrumb[1], href: "/xizmatlar" },
           { label: implantPage.breadcrumb[2] },
         ]}
         heading={implantPage.hero.heading}

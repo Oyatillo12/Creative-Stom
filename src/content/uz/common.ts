@@ -57,9 +57,3 @@ export const mapBlock: SiteContent["mapBlock"] = {
   twoGisLabel: "2GIS",
 };
 
-export const servicePageStub: SiteContent["servicePageStub"] = {
-  breadcrumbLabel: "Xizmatlar",
-  genericHeading: "Xizmat",
-  message: "Sahifa 1-bosqichda tayyorlanadi",
-  backLabel: "Barcha xizmatlar →",
-};

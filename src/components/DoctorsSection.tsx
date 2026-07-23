@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
@@ -22,7 +23,7 @@ export default function DoctorsSection() {
       <div className={`mt-16 grid grid-cols-1 gap-px bg-line md:mt-20 ${colsClass}`}>
         {doctors.map((doctor) => (
           <Reveal key={doctor.slug} className="bg-ivory">
-            <a href="#" className="group block">
+            <Link href={`/shifokorlar/${doctor.slug}`} className="group block">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
                   src={doctor.photo}
@@ -42,7 +43,7 @@ export default function DoctorsSection() {
                   {doctorsCopy.linkLabel}
                 </div>
               </div>
-            </a>
+            </Link>
           </Reveal>
         ))}
 

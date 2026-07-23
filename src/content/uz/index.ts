@@ -4,9 +4,11 @@
 import { siteConfig } from "@/config/site.config";
 import type { SiteContent } from "../types";
 import { media } from "../media";
-import { meta, clinicText, layout, mapBlock, servicePageStub } from "./common";
+import { meta, clinicText, layout, mapBlock } from "./common";
 import { heroSlides, homepage, positioningQuote } from "./home";
 import { services } from "./services";
+import { servicePages, serviceTemplate } from "./service-pages";
+import { pages } from "./pages";
 import { implantPage } from "./implant";
 import { doctors } from "./doctors";
 import { cases } from "./cases";
@@ -33,7 +35,9 @@ export const uz: SiteContent = {
   services,
   media,
   mapBlock,
-  servicePageStub,
+  servicePages,
+  serviceTemplate,
+  pages,
   homepage,
   implantPage,
   cases,

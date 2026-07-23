@@ -9,12 +9,15 @@ import { useFocusTrap } from "@/hooks/useFocusTrap";
 import Container from "./Container";
 import { useModals } from "./ModalProvider";
 
-const NAV_ANCHORS: Record<string, string> = {
-  "Xizmatlar": "#services",
-  "Shifokorlar": "#doctors",
-  "Keyslar": "#cases",
-  "Klinika haqida": "#about",
-  "Kontakt": "#contact",
+const MotionLink = m.create(Link);
+
+const NAV_ROUTES: Record<string, string> = {
+  "Xizmatlar": "/xizmatlar",
+  "Shifokorlar": "/shifokorlar",
+  "Keyslar": "/keyslar",
+  "Klinika haqida": "/klinika",
+  "Narxlar": "/narxlar",
+  "Kontakt": "/aloqa",
 };
 
 // Transparent over a page's hero (marked with [data-hero-sentinel]); solid
@@ -88,9 +91,9 @@ export default function Header() {
           >
             <nav className="flex flex-col gap-1">
               {layout.nav.map((item, i) => (
-                <m.a
+                <MotionLink
                   key={item}
-                  href={NAV_ANCHORS[item] ?? "#"}
+                  href={NAV_ROUTES[item] ?? "#"}
                   onClick={() => setMenuOpen(false)}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -98,7 +101,7 @@ export default function Header() {
                   className="border-b border-ivory/10 py-4 font-display text-3xl text-ivory transition-colors hover:text-gold"
                 >
                   {item}
-                </m.a>
+                </MotionLink>
               ))}
             </nav>
             <m.div
@@ -155,13 +158,13 @@ export default function Header() {
           }`}
         >
           {layout.nav.map((item) => (
-            <a
+            <Link
               key={item}
-              href={NAV_ANCHORS[item] ?? "#"}
+              href={NAV_ROUTES[item] ?? "#"}
               className={`transition-colors ${onDark ? "hover:text-gold" : "hover:text-gold-dark"}`}
             >
               {item}
-            </a>
+            </Link>
           ))}
         </nav>
 
