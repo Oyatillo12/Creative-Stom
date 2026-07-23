@@ -10,6 +10,7 @@ import UtmCapture from "@/components/UtmCapture";
 import { getContent, type Locale } from "@/content";
 import { siteConfig } from "@/config/site.config";
 import { inter, playfairDisplay } from "@/lib/fonts";
+import { JsonLd, clinicJsonLd } from "@/lib/jsonld";
 
 // Shared document shell used by both root layouts ((uz) and /ru).
 export default function SiteShell({ locale, children }: { locale: Locale; children: React.ReactNode }) {
@@ -22,6 +23,7 @@ export default function SiteShell({ locale, children }: { locale: Locale; childr
       data-metrica-id={siteConfig.analytics.yandexMetricaId || undefined}
     >
       <body className="flex min-h-screen flex-col bg-ivory font-body text-ink antialiased">
+        <JsonLd data={clinicJsonLd(locale)} />
         <MotionProvider>
           <LocaleProvider locale={locale}>
             <ModalProvider>

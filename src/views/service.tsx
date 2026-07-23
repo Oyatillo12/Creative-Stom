@@ -8,6 +8,7 @@ import BookingBand from "@/components/BookingBand";
 import ServiceHero from "@/components/ServiceHero";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd, procedureJsonLd } from "@/lib/jsonld";
 
 function getService(locale: Locale, slug: string) {
   const site = getContent(locale);
@@ -37,17 +38,21 @@ export default function ServiceView({ locale, slug }: { locale: Locale; slug: st
   const prefix = localePrefix(locale);
   const { item, page } = service;
   const { serviceTemplate: t, pages } = site;
+  const breadcrumb = [
+    { label: pages.shared.homeLabel, href: prefix || "/" },
+    { label: t.breadcrumbLabel, href: `${prefix}/xizmatlar` },
+    { label: item.title },
+  ];
 
   return (
     <>
+      <JsonLd data={procedureJsonLd(locale, item.title, slug)} />
+      <JsonLd data={faqJsonLd(page.faq)} />
+      <JsonLd data={breadcrumbJsonLd(breadcrumb)} />
       <ServiceHero
         image={page.heroImage}
         imageAlt={item.title}
-        breadcrumb={[
-          { label: pages.shared.homeLabel, href: prefix || "/" },
-          { label: t.breadcrumbLabel, href: `${prefix}/xizmatlar` },
-          { label: item.title },
-        ]}
+        breadcrumb={breadcrumb}
         heading={item.title}
         intro={page.intro}
         ctaLabel={site.layout.header.ctaLabel}

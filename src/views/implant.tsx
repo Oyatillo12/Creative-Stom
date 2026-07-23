@@ -8,6 +8,7 @@ import { BookingFormFields } from "@/components/BookingForm";
 import ServiceHero from "@/components/ServiceHero";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd, procedureJsonLd } from "@/lib/jsonld";
 
 export function implantMetadata(locale: Locale): Metadata {
   const site = getContent(locale);
@@ -23,17 +24,21 @@ export default function ImplantView({ locale }: { locale: Locale }) {
   const prefix = localePrefix(locale);
   const { implantPage, doctors, cases, faq, prices, homepage } = site;
   const surgeon = doctors[0];
+  const breadcrumb = [
+    { label: implantPage.breadcrumb[0], href: prefix || "/" },
+    { label: implantPage.breadcrumb[1], href: `${prefix}/xizmatlar` },
+    { label: implantPage.breadcrumb[2] },
+  ];
 
   return (
     <>
+      <JsonLd data={procedureJsonLd(locale, implantPage.hero.heading, "implantatsiya")} />
+      <JsonLd data={faqJsonLd(faq)} />
+      <JsonLd data={breadcrumbJsonLd(breadcrumb)} />
       <ServiceHero
         image={site.media.implantHero}
         imageAlt={implantPage.hero.label}
-        breadcrumb={[
-          { label: implantPage.breadcrumb[0], href: prefix || "/" },
-          { label: implantPage.breadcrumb[1], href: `${prefix}/xizmatlar` },
-          { label: implantPage.breadcrumb[2] },
-        ]}
+        breadcrumb={breadcrumb}
         heading={implantPage.hero.heading}
         intro={implantPage.hero.intro}
         ctaLabel={implantPage.hero.cta}

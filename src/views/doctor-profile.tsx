@@ -8,6 +8,7 @@ import Reveal from "@/components/Reveal";
 import BookingBand from "@/components/BookingBand";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, physicianJsonLd } from "@/lib/jsonld";
 
 export function doctorStaticParams() {
   return getContent("uz").doctors.map((doctor) => ({ slug: doctor.slug }));
@@ -29,15 +30,18 @@ export default function DoctorProfileView({ locale, slug }: { locale: Locale; sl
   const doctor = site.doctors.find((item) => item.slug === slug);
   if (!doctor) notFound();
   const { pages } = site;
+  const breadcrumb = [
+    { label: pages.shared.homeLabel, href: prefix || "/" },
+    { label: pages.doctors.breadcrumb, href: `${prefix}/shifokorlar` },
+    { label: doctor.name },
+  ];
 
   return (
     <>
+      <JsonLd data={physicianJsonLd(locale, doctor)} />
+      <JsonLd data={breadcrumbJsonLd(breadcrumb)} />
       <PageHero
-        breadcrumb={[
-          { label: pages.shared.homeLabel, href: prefix || "/" },
-          { label: pages.doctors.breadcrumb, href: `${prefix}/shifokorlar` },
-          { label: doctor.name },
-        ]}
+        breadcrumb={breadcrumb}
         heading={doctor.name}
         intro={`${doctor.role} · ${doctor.regalia}`}
       />
