@@ -4,7 +4,7 @@
 // src/content/<locale>/. Bracketed values are placeholders from the client
 // brief; keep the brackets literal until real data arrives.
 
-export const LOCALES = ["uz"] as const; // "ru" is added in the i18n phase
+export const LOCALES = ["uz", "ru"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const siteConfig = {
@@ -24,6 +24,9 @@ export const siteConfig = {
 
   defaultLocale: "uz" as Locale,
   locales: LOCALES,
+
+  /** Canonical origin for metadata/sitemap; override in production. */
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 
   /** Feature flags — flip without touching components. */
   features: {

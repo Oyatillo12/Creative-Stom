@@ -3,9 +3,11 @@ import Link from "next/link";
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { site } from "@/content";
+import { getContent, localePrefix, type Locale } from "@/content";
 
-export default function DoctorsSection() {
+export default function DoctorsSection({ locale = "uz" }: { locale?: Locale } = {}) {
+  const site = getContent(locale);
+  const prefix = localePrefix(locale);
   const { doctors: doctorsCopy } = site.homepage;
   const { doctors } = site;
   const showExpanding = doctors.length < 3;
@@ -23,7 +25,7 @@ export default function DoctorsSection() {
       <div className={`mt-16 grid grid-cols-1 gap-px bg-line md:mt-20 ${colsClass}`}>
         {doctors.map((doctor) => (
           <Reveal key={doctor.slug} className="bg-ivory">
-            <Link href={`/shifokorlar/${doctor.slug}`} className="group block">
+            <Link href={`${prefix}/shifokorlar/${doctor.slug}`} className="group block">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
                   src={doctor.photo}

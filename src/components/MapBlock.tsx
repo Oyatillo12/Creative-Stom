@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { site } from "@/content";
+import { useContent } from "./LocaleProvider";
 
 export default function MapBlock() {
+  const site = useContent();
   const { clinic, media, mapBlock } = site;
   const [mapOpen, setMapOpen] = useState(false);
   const { lat, lng } = clinic.coordinates;

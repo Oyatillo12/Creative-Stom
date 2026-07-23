@@ -4,7 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
-import { site } from "@/content";
+import { useContent, useLocale } from "./LocaleProvider";
+import { localePrefix, type Locale } from "@/content";
+import { LOCALES } from "@/config/site.config";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import Container from "./Container";
 import { useModals } from "./ModalProvider";
@@ -23,9 +25,17 @@ const NAV_ROUTES: Record<string, string> = {
 // Transparent over a page's hero (marked with [data-hero-sentinel]); solid
 // ivory once the sentinel scrolls past the top edge, or on pages without one.
 export default function Header() {
+  const site = useContent();
   const { clinic, layout } = site;
   const { openBooking } = useModals();
   const pathname = usePathname();
+  const locale = useLocale();
+  const prefix = localePrefix(locale);
+  const navHref = (item: string) => `${prefix}${NAV_ROUTES[item] ?? ""}` || "#";
+  const switchTarget = (target: Locale) => {
+    const bare = pathname.replace(/^\/ru(?=\/|$)/, "") || "/";
+    return `${localePrefix(target)}${bare === "/" ? "" : bare}` || "/";
+  };
   const headerRef = useRef<HTMLElement>(null);
   const [solid, setSolid] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -93,7 +103,7 @@ export default function Header() {
               {layout.nav.map((item, i) => (
                 <MotionLink
                   key={item}
-                  href={NAV_ROUTES[item] ?? "#"}
+                  href={navHref(item)}
                   onClick={() => setMenuOpen(false)}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -122,7 +132,17 @@ export default function Header() {
                 >
                   {layout.topBar.telegramLabel}
                 </a>
-                <span className="uppercase tracking-wide">{layout.topBar.languageToggle}</span>
+                <span className="flex items-center gap-3 uppercase tracking-wide">
+                  {LOCALES.map((l) => (
+                    <Link
+                      key={l}
+                      href={switchTarget(l)}
+                      className={l === locale ? "text-gold" : "transition-colors hover:text-gold"}
+                    >
+                      {l.toUpperCase()}
+                    </Link>
+                  ))}
+                </span>
               </div>
               <button
                 type="button"
@@ -145,7 +165,7 @@ export default function Header() {
         }`}
       >
         <Link
-          href="/"
+          href={prefix || "/"}
           onClick={() => setMenuOpen(false)}
           className={`font-display text-2xl transition-colors duration-300 ${onDark ? "text-ivory" : "text-navy"}`}
         >
@@ -160,7 +180,7 @@ export default function Header() {
           {layout.nav.map((item) => (
             <Link
               key={item}
-              href={NAV_ROUTES[item] ?? "#"}
+              href={navHref(item)}
               className={`transition-colors ${onDark ? "hover:text-gold" : "hover:text-gold-dark"}`}
             >
               {item}
@@ -169,6 +189,29 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-6">
+          <div
+            className={`hidden items-center gap-2 font-body text-xs font-semibold uppercase tracking-wide lg:flex ${
+              onDark ? "text-ivory/70" : "text-muted"
+            }`}
+          >
+            {LOCALES.map((l, i) => (
+              <span key={l} className="flex items-center gap-2">
+                {i > 0 && <span className={onDark ? "text-ivory/30" : "text-line"}>/</span>}
+                <Link
+                  href={switchTarget(l)}
+                  className={
+                    l === locale
+                      ? onDark
+                        ? "text-gold"
+                        : "text-gold-dark"
+                      : `transition-colors ${onDark ? "hover:text-gold" : "hover:text-gold-dark"}`
+                  }
+                >
+                  {l.toUpperCase()}
+                </Link>
+              </span>
+            ))}
+          </div>
           <a
             href={phoneHref}
             className={`hidden font-body text-sm font-medium transition-colors xl:block ${

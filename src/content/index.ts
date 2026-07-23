@@ -4,11 +4,17 @@
 import { siteConfig, type Locale } from "@/config/site.config";
 import type { SiteContent } from "./types";
 import { uz } from "./uz";
+import { ru } from "./ru";
 
 export type { Locale };
 export * from "./types";
 
-const dictionaries: Record<Locale, SiteContent> = { uz };
+const dictionaries: Record<Locale, SiteContent> = { uz, ru };
+
+/** Path prefix for a locale: "" for the default, "/ru" for Russian. */
+export function localePrefix(locale: Locale): string {
+  return locale === siteConfig.defaultLocale ? "" : `/${locale}`;
+}
 
 export function getContent(locale: Locale = siteConfig.defaultLocale): SiteContent {
   return dictionaries[locale];

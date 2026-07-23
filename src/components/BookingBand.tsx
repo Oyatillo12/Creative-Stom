@@ -4,9 +4,10 @@ import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import { useModals } from "./ModalProvider";
-import { site } from "@/content";
+import { useContent } from "./LocaleProvider";
 
 export default function BookingBand() {
+  const site = useContent();
   const { cta } = site.homepage;
   const { openBooking, openQuiz } = useModals();
 

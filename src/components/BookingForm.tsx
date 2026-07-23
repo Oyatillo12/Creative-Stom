@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { site } from "@/content";
+import { useContent } from "./LocaleProvider";
 import { formatUzPhone } from "@/lib/phone";
 import { submitLead } from "@/lib/lead";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" }) {
+  const site = useContent();
   const { bookingForm, doctors } = site;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+998");
@@ -124,6 +125,7 @@ export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" 
 }
 
 export default function BookingForm({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const site = useContent();
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   useFocusTrap(open, dialogRef);

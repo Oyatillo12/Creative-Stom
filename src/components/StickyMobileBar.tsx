@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site } from "@/content";
+import { useContent } from "./LocaleProvider";
 import { useModals } from "./ModalProvider";
 
 export default function StickyMobileBar() {
+  const site = useContent();
   const { clinic, layout } = site;
   const { openBooking } = useModals();
   const phoneHref = `tel:${clinic.phone.replace(/[^+\d]/g, "")}`;

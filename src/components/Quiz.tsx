@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useReducer, useRef, useState } from "react";
-import { site } from "@/content";
+import { useContent } from "./LocaleProvider";
 import { formatUzPhone } from "@/lib/phone";
 import { submitLead } from "@/lib/lead";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
@@ -48,6 +48,7 @@ function reducer(state: QuizState, action: QuizAction): QuizState {
 }
 
 export default function Quiz({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const site = useContent();
   const { quiz: quizCopy } = site.homepage;
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -98,6 +99,7 @@ export default function Quiz({ open, onClose }: { open: boolean; onClose: () => 
 }
 
 function QuizFlow({ onClose }: { onClose: () => void }) {
+  const site = useContent();
   const { steps, contactStep, backLabel, closeLabel, successTemplate } = site.quiz;
   const [state, dispatch] = useReducer(reducer, initialState);
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");

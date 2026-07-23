@@ -27,6 +27,8 @@ export const implantPage: SiteContent["implantPage"] = {
     eyebrow: "Usullar",
     heading: "Uch usul — bitta jarrohlik darajasi",
     linkLabel: "Batafsil →",
+    durationLabel: "Muddat",
+    priceLabel: "Narx",
     featured: {
       badge: "Eng ko'p tanlanadi",
       name: "All-on-4",

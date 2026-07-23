@@ -184,6 +184,8 @@ export interface SiteContent {
       eyebrow: string;
       heading: string;
       linkLabel: string;
+      durationLabel: string;
+      priceLabel: string;
       featured: { badge: string; name: string; description: string; duration: string; price: string };
       others: { name: string; description: string; duration: string; price: string }[];
       note: string;

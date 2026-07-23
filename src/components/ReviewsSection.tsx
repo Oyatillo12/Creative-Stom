@@ -1,9 +1,10 @@
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { site } from "@/content";
+import { getContent, type Locale } from "@/content";
 
-export default function ReviewsSection() {
+export default function ReviewsSection({ locale = "uz" }: { locale?: Locale } = {}) {
+  const site = getContent(locale);
   const { reviews: reviewsCopy } = site.homepage;
   const { rating, count, items } = site.reviews;
 

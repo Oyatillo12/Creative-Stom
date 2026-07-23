@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { site } from "@/content";
+import { useContent } from "./LocaleProvider";
 
 export default function PositioningQuote() {
+  const site = useContent();
   const { text, author } = site.positioningQuote;
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();

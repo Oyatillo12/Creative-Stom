@@ -2,9 +2,10 @@ import Image from "next/image";
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { site } from "@/content";
+import { getContent, type Locale } from "@/content";
 
-export default function CredentialsSection() {
+export default function CredentialsSection({ locale = "uz" }: { locale?: Locale } = {}) {
+  const site = getContent(locale);
   const { credentials } = site.homepage;
 
   return (

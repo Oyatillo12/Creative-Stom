@@ -2,9 +2,10 @@ import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import MapBlock from "./MapBlock";
-import { site } from "@/content";
+import { getContent, type Locale } from "@/content";
 
-export default function ContactSlot() {
+export default function ContactSlot({ locale = "uz" }: { locale?: Locale } = {}) {
+  const site = getContent(locale);
   const { contact } = site.homepage;
 
   return (

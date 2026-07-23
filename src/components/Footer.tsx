@@ -1,7 +1,8 @@
-import { site } from "@/content";
+import { getContent, type Locale } from "@/content";
 import Container from "./Container";
 
-export default function Footer() {
+export default function Footer({ locale = "uz" }: { locale?: Locale } = {}) {
+  const site = getContent(locale);
   const { clinic, layout } = site;
 
   return (

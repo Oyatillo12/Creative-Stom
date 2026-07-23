@@ -1,9 +1,11 @@
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { site } from "@/content";
+import { getContent, localePrefix, type Locale } from "@/content";
 
-export default function ServicesSection() {
+export default function ServicesSection({ locale = "uz" }: { locale?: Locale } = {}) {
+  const site = getContent(locale);
+  const prefix = localePrefix(locale);
   const { services } = site.homepage;
   const { surgical, general } = site.services;
 
@@ -30,7 +32,7 @@ export default function ServicesSection() {
                 {surgical.map((item, i) => (
                   <a
                     key={item.slug}
-                    href={`/xizmatlar/${item.slug}`}
+                    href={`${prefix}/xizmatlar/${item.slug}`}
                     className="group -mx-2 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-ivory/15 px-2 py-6 transition-colors last:border-b hover:bg-navy-2 sm:flex-nowrap sm:py-7"
                   >
                     <span className="w-8 shrink-0 font-body text-xs text-ivory/40">{String(i + 1).padStart(2, "0")}</span>
@@ -52,7 +54,7 @@ export default function ServicesSection() {
               </div>
               <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:gap-x-12 sm:gap-y-6">
                 {general.map((item) => (
-                  <a key={item.slug} href={`/xizmatlar/${item.slug}`} className="group flex flex-col gap-2">
+                  <a key={item.slug} href={`${prefix}/xizmatlar/${item.slug}`} className="group flex flex-col gap-2">
                     <span className="font-body text-base font-medium text-ivory/85 transition-colors group-hover:text-gold">
                       {item.title}
                     </span>
