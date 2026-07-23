@@ -8,7 +8,7 @@ const leadSchema = z.object({
     .regex(/^\+?[\d\s()-]{7,20}$/),
   source: z.enum(["booking-modal", "quiz", "booking-band", "sticky-bar"]),
   page: z.string().max(200).optional(),
-  doctor: z.string().max(120).optional(),
+  service: z.string().max(120).optional(),
   time: z.string().max(120).optional(),
   quizAnswers: z.record(z.string(), z.string().max(60)).optional(),
   utm: z.record(z.string(), z.string().max(200)).optional(),
@@ -37,7 +37,7 @@ function formatLead(lead: z.infer<typeof leadSchema>): string {
     `Manba: ${lead.source}`,
   ];
   if (lead.page) lines.push(`Sahifa: ${lead.page}`);
-  if (lead.doctor) lines.push(`Shifokor: ${lead.doctor}`);
+  if (lead.service) lines.push(`Xizmat: ${lead.service}`);
   if (lead.time) lines.push(`Qulay vaqt: ${lead.time}`);
   if (lead.quizAnswers) {
     lines.push("So'rovnoma:");

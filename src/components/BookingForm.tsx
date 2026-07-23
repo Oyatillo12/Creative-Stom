@@ -4,14 +4,21 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useContent } from "./LocaleProvider";
 import { formatUzPhone } from "@/lib/phone";
 import { submitLead } from "@/lib/lead";
+import type { LeadSource } from "@/lib/analytics";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 
-export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" }) {
+export function BookingFormFields({
+  tone = "light",
+  source = "booking-modal",
+}: {
+  tone?: "light" | "dark";
+  source?: LeadSource;
+}) {
   const site = useContent();
-  const { bookingForm, doctors } = site;
+  const { bookingForm, services } = site;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("+998");
-  const [doctor, setDoctor] = useState("any");
+  const [service, setService] = useState("any");
   const [time, setTime] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [submitted, setSubmitted] = useState(false);
@@ -37,8 +44,9 @@ export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" 
         const ok = await submitLead({
           name,
           phone,
-          source: "booking-modal",
-          doctor: doctor === "any" ? undefined : doctor,
+          source,
+          // Send the localized title, not the slug, so the lead reads well.
+          service: service === "any" ? undefined : services.find((s) => s.slug === service)?.title,
           time: time || undefined,
         });
         if (ok) setSubmitted(true);
@@ -76,19 +84,19 @@ export function BookingFormFields({ tone = "light" }: { tone?: "light" | "dark" 
 
       <label className="block">
         <span className={`font-body text-xs font-semibold tracking-[0.18em] uppercase ${labelColor}`}>
-          {bookingForm.doctorLabel}
+          {bookingForm.serviceLabel}
         </span>
         <select
-          value={doctor}
-          onChange={(e) => setDoctor(e.target.value)}
+          value={service}
+          onChange={(e) => setService(e.target.value)}
           className={`mt-3 w-full border-b bg-transparent py-3 font-body text-base outline-none focus-visible:border-gold ${inputColor}`}
         >
           <option value="any" className="text-ink">
-            {bookingForm.doctorAnyLabel}
+            {bookingForm.serviceAnyLabel}
           </option>
-          {doctors.map((d) => (
-            <option key={d.slug} value={d.slug} className="text-ink">
-              {d.name}
+          {services.map((s) => (
+            <option key={s.slug} value={s.slug} className="text-ink">
+              {s.title}
             </option>
           ))}
         </select>

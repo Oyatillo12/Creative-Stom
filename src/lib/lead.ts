@@ -26,7 +26,7 @@ export interface LeadPayload {
   name: string;
   phone: string;
   source: LeadSource;
-  doctor?: string;
+  service?: string;
   time?: string;
   quizAnswers?: Record<string, string>;
 }

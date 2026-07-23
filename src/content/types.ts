@@ -219,8 +219,8 @@ export interface SiteContent {
     namePlaceholder: string;
     phoneLabel: string;
     phonePlaceholder: string;
-    doctorLabel: string;
-    doctorAnyLabel: string;
+    serviceLabel: string;
+    serviceAnyLabel: string;
     timeLabel: string;
     timePlaceholder: string;
     submitLabel: string;
