@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/xizmatlar/implantatsiya",
     ...site.servicePages.map((service) => `/xizmatlar/${service.slug}`),
     "/shifokorlar",
-    ...site.doctors.map((doctor) => `/shifokorlar/${doctor.slug}`),
     "/keyslar",
     ...site.cases.map((caseItem) => `/keyslar/${caseItem.slug}`),
     "/narxlar",

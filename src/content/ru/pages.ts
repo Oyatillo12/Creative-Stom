@@ -18,7 +18,6 @@ export const pages: SiteContent["pages"] = {
     intro: "[Краткое вступление — о команде, 1–2 предложения]", // TODO
     educationLabel: "Образование и квалификация",
     focusLabel: "Направления",
-    allDoctorsLabel: "Все врачи →",
   },
   cases: {
     breadcrumb: "Кейсы",

@@ -20,14 +20,14 @@ export const doctors: SiteContent["doctors"] = [
     ],
     focus: [
       "Tish implantatsiyasi (All-on-4 / All-on-6)",
-      "Suyak plastikasi va sinus-lifting",
-      "Og'iz va jag'-yuz jarrohligi",
+      "Sinus-lifting va suyak plastikasi",
+      "Og'iz bo'shlig'i jarrohligi",
     ],
   },
   {
     slug: "doctor-2",
     name: "[Dr. FAMILIYA 2]", // TODO
-    role: "[ixtisosi, masalan: ortoped-stomatolog]", // TODO
+    role: "[ixtisosi, masalan: xirurg-implantolog]", // TODO
     regalia: "[malaka/sertifikat]", // TODO
     photo: doctorPhotos["doctor-2"],
     bio: [

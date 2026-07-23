@@ -4,7 +4,6 @@ import Container from "@/components/Container";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import CredentialsSection from "@/components/CredentialsSection";
 import FirstVisitSection from "@/components/FirstVisitSection";
 import PositioningQuote from "@/components/PositioningQuote";
 import BookingBand from "@/components/BookingBand";
@@ -73,7 +72,6 @@ export default function ClinicView({ locale }: { locale: Locale }) {
       </section>
 
       <PositioningQuote />
-      <CredentialsSection locale={locale} />
       <FirstVisitSection locale={locale} />
       <BookingBand />
     </>

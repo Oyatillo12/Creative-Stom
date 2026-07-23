@@ -35,8 +35,6 @@ export const homepage: SiteContent["homepage"] = {
   doctors: {
     eyebrow: "Shifokorlar",
     heading: "Jamoa jarrohlik maktabidan",
-    expandingLabel: "Jamoa kengaymoqda",
-    expandingText: "[Yangi mutaxassis — tez orada]", // TODO
     linkLabel: "Batafsil →",
   },
   cases: {
@@ -45,13 +43,6 @@ export const homepage: SiteContent["homepage"] = {
     beforeLabel: "Avval",
     afterLabel: "Keyin",
     linkLabel: "Barcha keyslar →",
-  },
-  credentials: {
-    eyebrow: "Sertifikatlar",
-    heading: "Xalqaro standartlar asosida ishlaymiz",
-    certAlt: "Sertifikat",
-    implantSystemsLabel: "Ishlatiladigan implant tizimlari",
-    implantSystems: ["[IMPLANT TIZIMI 1]", "[IMPLANT TIZIMI 2]", "[IMPLANT TIZIMI 3]"], // TODO
   },
   firstVisit: {
     eyebrow: "Birinchi tashrif",

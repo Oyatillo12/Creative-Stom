@@ -5,7 +5,6 @@ import ServicesSection from "@/components/ServicesSection";
 import DoctorsSection from "@/components/DoctorsSection";
 import PositioningQuote from "@/components/PositioningQuote";
 import FeaturedCase from "@/components/FeaturedCase";
-import CredentialsSection from "@/components/CredentialsSection";
 import FirstVisitSection from "@/components/FirstVisitSection";
 import BookingBand from "@/components/BookingBand";
 import ReviewsSection from "@/components/ReviewsSection";
@@ -41,7 +40,6 @@ export default function HomeView({ locale }: { locale: Locale }) {
       <DoctorsSection locale={locale} />
       <PositioningQuote />
       <FeaturedCase locale={locale} />
-      <CredentialsSection locale={locale} />
       <FirstVisitSection locale={locale} />
       <BookingBand />
       <ReviewsSection locale={locale} />

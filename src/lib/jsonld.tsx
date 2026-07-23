@@ -44,7 +44,7 @@ export function physicianJsonLd(locale: Locale, doctor: Doctor): Record<string, 
     name: doctor.name,
     jobTitle: doctor.role,
     worksFor: { "@type": "Dentist", name: site.clinic.name },
-    url: `${siteConfig.siteUrl}${localePrefix(locale)}/shifokorlar/${doctor.slug}`,
+    url: `${siteConfig.siteUrl}${localePrefix(locale)}/shifokorlar`,
   };
 }
 

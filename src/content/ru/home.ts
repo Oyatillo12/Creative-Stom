@@ -35,8 +35,6 @@ export const homepage: SiteContent["homepage"] = {
   doctors: {
     eyebrow: "Врачи",
     heading: "Команда хирургической школы",
-    expandingLabel: "Команда растёт",
-    expandingText: "[Новый специалист — скоро]", // TODO
     linkLabel: "Подробнее →",
   },
   cases: {
@@ -45,13 +43,6 @@ export const homepage: SiteContent["homepage"] = {
     beforeLabel: "До",
     afterLabel: "После",
     linkLabel: "Все кейсы →",
-  },
-  credentials: {
-    eyebrow: "Сертификаты",
-    heading: "Работаем по международным стандартам",
-    certAlt: "Сертификат",
-    implantSystemsLabel: "Используемые системы имплантов",
-    implantSystems: ["[СИСТЕМА ИМПЛАНТОВ 1]", "[СИСТЕМА ИМПЛАНТОВ 2]", "[СИСТЕМА ИМПЛАНТОВ 3]"], // TODO
   },
   firstVisit: {
     eyebrow: "Первый визит",

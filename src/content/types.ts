@@ -115,7 +115,6 @@ export interface SiteContent {
   media: {
     aboutInterior: string;
     processWide: string;
-    certificates: string[];
     mapFacade: string;
     videoPoster: string;
     implantHero: string;
@@ -153,7 +152,6 @@ export interface SiteContent {
       intro: string;
       educationLabel: string;
       focusLabel: string;
-      allDoctorsLabel: string;
     };
     cases: {
       breadcrumb: string;
@@ -173,9 +171,8 @@ export interface SiteContent {
     hero: { eyebrow: string; heading: string; subhead: string; ctaPrimary: string; ctaSecondary: string };
     about: { eyebrow: string; heading: string; statement: string; linkLabel: string };
     services: { eyebrow: string; heading: string; intro: string; linkLabel: string };
-    doctors: { eyebrow: string; heading: string; expandingLabel: string; expandingText: string; linkLabel: string };
+    doctors: { eyebrow: string; heading: string; linkLabel: string };
     cases: { eyebrow: string; heading: string; beforeLabel: string; afterLabel: string; linkLabel: string };
-    credentials: { eyebrow: string; heading: string; certAlt: string; implantSystemsLabel: string; implantSystems: string[] };
     firstVisit: { eyebrow: string; heading: string; steps: { n: string; title: string; text: string }[] };
     reviews: { eyebrow: string; heading: string; googleLabel: string; linkLabel: string };
     faq: { eyebrow: string; heading: string };

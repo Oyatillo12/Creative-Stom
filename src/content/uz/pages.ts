@@ -18,7 +18,6 @@ export const pages: SiteContent["pages"] = {
     intro: "[Qisqa kirish — jamoa haqida 1–2 jumla]", // TODO
     educationLabel: "Ta'lim va malaka",
     focusLabel: "Yo'nalishlar",
-    allDoctorsLabel: "Barcha shifokorlar →",
   },
   cases: {
     breadcrumb: "Keyslar",
