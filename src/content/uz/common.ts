@@ -22,15 +22,34 @@ export const clinicText = {
 };
 
 export const layout: SiteContent["layout"] = {
-  nav: ["Xizmatlar", "Shifokorlar", "Keyslar", "Klinika haqida", "Narxlar", "Kontakt"],
+  nav: {
+    services: {
+      label: "Xizmatlar",
+      allLabel: "Barcha xizmatlar",
+      surgicalLabel: "Jarrohlik yo'nalishi",
+      generalLabel: "Umumiy stomatologiya",
+    },
+    primary: [
+      { key: "doctors", label: "Shifokorlar" },
+      { key: "cases", label: "Keyslar" },
+    ],
+    clinic: {
+      label: "Klinika",
+      items: [
+        { key: "about", label: "Klinika haqida" },
+        { key: "prices", label: "Narxlar" },
+        { key: "contact", label: "Kontakt" },
+      ],
+    },
+  },
   topBar: {
-    languageToggle: "UZ / RU",
     telegramLabel: "Telegram",
   },
   header: {
     ctaLabel: "Onlayn yozilish",
     menuLabel: "Menyu",
     closeLabel: "Yopish",
+    langLabel: "Til",
   },
   preloader: {
     ariaLabel: "Sahifa yuklanmoqda",

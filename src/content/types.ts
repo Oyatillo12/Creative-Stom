@@ -72,6 +72,14 @@ export interface QuizContactStep {
   submitLabel: string;
 }
 
+/** Route identity of a nav entry — Header maps keys to locale-prefixed paths. */
+export type NavKey = "services" | "doctors" | "cases" | "about" | "prices" | "contact";
+
+export interface NavLink {
+  key: NavKey;
+  label: string;
+}
+
 export interface SiteContent {
   meta: {
     title: string;
@@ -90,9 +98,13 @@ export interface SiteContent {
     statsLabels: { years: string; surgeries: string; doctors: string };
   };
   layout: {
-    nav: string[];
-    topBar: { languageToggle: string; telegramLabel: string };
-    header: { ctaLabel: string; menuLabel: string; closeLabel: string };
+    nav: {
+      services: { label: string; allLabel: string; surgicalLabel: string; generalLabel: string };
+      primary: NavLink[];
+      clinic: { label: string; items: NavLink[] };
+    };
+    topBar: { telegramLabel: string };
+    header: { ctaLabel: string; menuLabel: string; closeLabel: string; langLabel: string };
     preloader: { ariaLabel: string };
     stickyBar: { call: string; telegram: string; book: string };
     footer: { licenseLabel: string; rightsNote: string };

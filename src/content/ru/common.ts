@@ -19,15 +19,34 @@ export const clinicText = {
 };
 
 export const layout: SiteContent["layout"] = {
-  nav: ["Услуги", "Врачи", "Кейсы", "О клинике", "Цены", "Контакты"],
+  nav: {
+    services: {
+      label: "Услуги",
+      allLabel: "Все услуги",
+      surgicalLabel: "Хирургическое направление",
+      generalLabel: "Общая стоматология",
+    },
+    primary: [
+      { key: "doctors", label: "Врачи" },
+      { key: "cases", label: "Кейсы" },
+    ],
+    clinic: {
+      label: "Клиника",
+      items: [
+        { key: "about", label: "О клинике" },
+        { key: "prices", label: "Цены" },
+        { key: "contact", label: "Контакты" },
+      ],
+    },
+  },
   topBar: {
-    languageToggle: "UZ / RU",
     telegramLabel: "Telegram",
   },
   header: {
     ctaLabel: "Онлайн запись",
     menuLabel: "Меню",
     closeLabel: "Закрыть",
+    langLabel: "Язык",
   },
   preloader: {
     ariaLabel: "Страница загружается",
