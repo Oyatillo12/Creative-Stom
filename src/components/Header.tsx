@@ -127,7 +127,7 @@ export default function Header() {
   const navLinkCls = `transition-colors ${onDark ? "hover:text-gold" : "hover:text-gold-dark"}`;
   const panelCls = onDark
     ? "border border-ivory/10 bg-navy-2 text-ivory"
-    : "border border-line bg-ivory text-ink shadow-[0_18px_40px_-24px_rgba(16,38,59,0.35)]";
+    : "border border-line bg-ivory text-ink shadow-[0_18px_40px_-24px_rgba(11,29,46,0.35)]";
   const panelItemCls = `block px-5 py-2.5 text-sm transition-colors ${
     onDark ? "text-ivory/90 hover:bg-navy hover:text-gold" : "text-ink hover:bg-line/40 hover:text-gold-dark"
   }`;

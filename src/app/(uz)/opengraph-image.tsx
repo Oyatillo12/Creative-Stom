@@ -17,14 +17,14 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          backgroundColor: "#10263B",
-          color: "#F5F2EC",
+          backgroundColor: "#0B1D2E",
+          color: "#FAF8F4",
           fontFamily: "Georgia, serif",
         }}
       >
-        <div style={{ width: 72, height: 4, backgroundColor: "#C19A5B", marginBottom: 40 }} />
+        <div style={{ width: 72, height: 4, backgroundColor: "#D4AF6A", marginBottom: 40 }} />
         <div style={{ fontSize: 96 }}>{site.clinic.name}</div>
-        <div style={{ fontSize: 36, marginTop: 28, color: "#C19A5B" }}>{site.homepage.hero.heading}</div>
+        <div style={{ fontSize: 36, marginTop: 28, color: "#D4AF6A" }}>{site.homepage.hero.heading}</div>
       </div>
     ),
     size,

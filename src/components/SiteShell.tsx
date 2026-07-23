@@ -20,6 +20,7 @@ export default function SiteShell({ locale, children }: { locale: Locale; childr
     <html
       lang={locale}
       className={`${playfairDisplay.variable} ${inter.variable}`}
+      data-scroll-behavior="smooth"
       data-metrica-id={siteConfig.analytics.yandexMetricaId || undefined}
     >
       <body className="flex min-h-screen flex-col bg-ivory font-body text-ink antialiased">

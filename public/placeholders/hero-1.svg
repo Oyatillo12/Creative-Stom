@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0 0 1920 1200">
-  <rect width="1920" height="1200" fill="#10263B" />
-  <rect x="14" y="14" width="1892" height="1172" fill="none" stroke="#C19A5B" stroke-width="1.5" />
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#F5F2EC" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="11">OPERATSIYA JARAYONI</text>
+  <rect width="1920" height="1200" fill="#0B1D2E" />
+  <rect x="14" y="14" width="1892" height="1172" fill="none" stroke="#D4AF6A" stroke-width="1.5" />
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#FAF8F4" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="11">OPERATSIYA JARAYONI</text>
 </svg>

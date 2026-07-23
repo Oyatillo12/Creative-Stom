@@ -5,9 +5,9 @@ import { dirname, join } from "node:path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outDir = join(__dirname, "..", "public", "placeholders");
 
-const NAVY = "#10263B";
-const IVORY = "#F5F2EC";
-const GOLD = "#C19A5B";
+const NAVY = "#0B1D2E";
+const IVORY = "#FAF8F4";
+const GOLD = "#D4AF6A";
 
 const placeholders = [
   { name: "hero-1", width: 1920, height: 1200, label: "OPERATSIYA JARAYONI" },
@@ -26,8 +26,6 @@ const placeholders = [
   { name: "cert-2", width: 400, height: 520, label: "SERTIFIKAT" },
   { name: "cert-3", width: 400, height: 520, label: "SERTIFIKAT" },
   { name: "cert-4", width: 400, height: 520, label: "SERTIFIKAT" },
-  { name: "map-facade", width: 1600, height: 700, label: "KLINIKA FASADI" },
-  { name: "video-poster", width: 1600, height: 900, label: "VIDEO" },
 ];
 
 function escapeXml(value) {
