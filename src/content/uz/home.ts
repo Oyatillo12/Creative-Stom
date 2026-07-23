@@ -56,9 +56,9 @@ export const homepage: SiteContent["homepage"] = {
   },
   reviews: {
     eyebrow: "Sharhlar",
-    heading: "[Mijozlar fikri]", // TODO
-    googleLabel: "Google sharhlari",
-    linkLabel: "Google'da barcha sharhlarni ko'rish →",
+    heading: "Bemorlarimiz nima deydi",
+    prevLabel: "Oldingi sharh",
+    nextLabel: "Keyingi sharh",
   },
   faq: {
     eyebrow: "Savol-javob",

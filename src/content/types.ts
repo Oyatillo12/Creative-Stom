@@ -46,6 +46,7 @@ export interface FaqItem {
 
 export interface ReviewItem {
   name: string;
+  service: string;
   text: string;
 }
 
@@ -171,7 +172,7 @@ export interface SiteContent {
     doctors: { eyebrow: string; heading: string; linkLabel: string };
     cases: { eyebrow: string; heading: string; beforeLabel: string; afterLabel: string; linkLabel: string };
     firstVisit: { eyebrow: string; heading: string; steps: { n: string; title: string; text: string }[] };
-    reviews: { eyebrow: string; heading: string; googleLabel: string; linkLabel: string };
+    reviews: { eyebrow: string; heading: string; prevLabel: string; nextLabel: string };
     faq: { eyebrow: string; heading: string };
     prices: { eyebrow: string; heading: string };
     quiz: { eyebrow: string; heading: string; intro: string; startLabel: string };
@@ -201,7 +202,7 @@ export interface SiteContent {
   };
   cases: CaseItem[];
   faq: FaqItem[];
-  reviews: { rating: string; count: string; items: ReviewItem[] };
+  reviews: { items: ReviewItem[] };
   prices: { tiers: PriceTier[]; disclaimer: string };
   quiz: {
     steps: QuizStep[];

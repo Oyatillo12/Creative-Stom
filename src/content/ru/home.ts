@@ -56,9 +56,9 @@ export const homepage: SiteContent["homepage"] = {
   },
   reviews: {
     eyebrow: "Отзывы",
-    heading: "[Мнение пациентов]", // TODO
-    googleLabel: "Отзывы Google",
-    linkLabel: "Смотреть все отзывы в Google →",
+    heading: "Что говорят наши пациенты",
+    prevLabel: "Предыдущий отзыв",
+    nextLabel: "Следующий отзыв",
   },
   faq: {
     eyebrow: "Вопрос-ответ",
