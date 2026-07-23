@@ -32,7 +32,7 @@ export function clinicJsonLd(locale: Locale): Record<string, unknown> {
       longitude: site.clinic.coordinates.lng,
     },
     openingHours: site.clinic.workHours,
-    sameAs: [site.clinic.telegramUrl],
+    sameAs: [site.clinic.telegramUrl, site.clinic.instagramUrl],
   };
 }
 

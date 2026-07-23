@@ -13,7 +13,7 @@ export const siteConfig = {
     name: "Creative Stom", // TODO
     phone: "+998 [XX] [XXX-XX-XX]", // TODO
     telegramUrl: "https://t.me/[username]", // TODO
-    license: "[Litsenziya raqami]", // TODO
+    instagramUrl: "https://instagram.com/[username]", // TODO
     coordinates: { lat: 41.3111, lng: 69.2797 },
     stats: {
       years: "6+", // TODO

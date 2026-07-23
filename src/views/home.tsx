@@ -3,7 +3,6 @@ import HeroSlideshow from "@/components/HeroSlideshow";
 import AboutTeaser from "@/components/AboutTeaser";
 import ServicesSection from "@/components/ServicesSection";
 import DoctorsSection from "@/components/DoctorsSection";
-import PositioningQuote from "@/components/PositioningQuote";
 import FeaturedCase from "@/components/FeaturedCase";
 import FirstVisitSection from "@/components/FirstVisitSection";
 import BookingBand from "@/components/BookingBand";
@@ -38,7 +37,6 @@ export default function HomeView({ locale }: { locale: Locale }) {
       <AboutTeaser locale={locale} />
       <ServicesSection locale={locale} />
       <DoctorsSection locale={locale} />
-      <PositioningQuote />
       <FeaturedCase locale={locale} />
       <FirstVisitSection locale={locale} />
       <BookingBand />

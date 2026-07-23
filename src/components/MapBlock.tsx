@@ -1,14 +1,32 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { useContent } from "./LocaleProvider";
 
 export default function MapBlock() {
   const site = useContent();
-  const { clinic, media, mapBlock } = site;
-  const [mapOpen, setMapOpen] = useState(false);
+  const { clinic, mapBlock } = site;
   const { lat, lng } = clinic.coordinates;
+  const frameRef = useRef<HTMLDivElement>(null);
+  // The map is always open; the iframe itself mounts only once the block
+  // approaches the viewport so Google's embed doesn't load at initial paint.
+  const [nearViewport, setNearViewport] = useState(false);
+
+  useEffect(() => {
+    const el = frameRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const embedSrc = `https://www.google.com/maps?q=${lat},${lng}&output=embed`;
   const googleDirections = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
@@ -18,8 +36,11 @@ export default function MapBlock() {
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_340px]">
-      <div className="relative aspect-[16/10] w-full overflow-hidden border border-line md:aspect-[16/9]">
-        {mapOpen ? (
+      <div
+        ref={frameRef}
+        className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-bone md:aspect-[16/9]"
+      >
+        {nearViewport && (
           <iframe
             src={embedSrc}
             title={mapBlock.iframeTitle}
@@ -27,28 +48,15 @@ export default function MapBlock() {
             referrerPolicy="no-referrer-when-downgrade"
             className="absolute inset-0 h-full w-full border-0"
           />
-        ) : (
-          <button type="button" onClick={() => setMapOpen(true)} className="group absolute inset-0 block h-full w-full">
-            <Image
-              src={media.mapFacade}
-              alt={mapBlock.iframeTitle}
-              fill
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              className="object-cover"
-            />
-            <span className="absolute inset-0 bg-navy/40 transition-colors group-hover:bg-navy/55" />
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="bg-gold px-8 py-4 font-body text-xs font-semibold tracking-[0.14em] text-navy uppercase transition-colors group-hover:bg-gold-dark group-hover:text-ivory">
-                {mapBlock.openLabel}
-              </span>
-            </span>
-          </button>
         )}
       </div>
 
       <div className="flex flex-col gap-7">
-        <div className="font-body text-sm text-ink">
-          <span className="font-semibold text-gold-dark">{mapBlock.landmarkLabel}:</span> {clinic.landmark}
+        <div>
+          <div className="font-body text-xs font-semibold tracking-[0.2em] text-gold-dark uppercase">
+            {mapBlock.landmarkLabel}
+          </div>
+          <div className="mt-2 font-body text-sm text-ink">{clinic.landmark}</div>
         </div>
 
         <div>

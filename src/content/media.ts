@@ -7,8 +7,6 @@ import type { SiteContent } from "./types";
 export const media: SiteContent["media"] = {
   aboutInterior: "/images/interior.jpeg",
   processWide: "/placeholders/wide-process.svg",
-  mapFacade: "/placeholders/map-facade.svg",
-  videoPoster: "/placeholders/video-poster.svg",
   implantHero: "/images/process-operation.jpg",
 };
 

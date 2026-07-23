@@ -86,8 +86,3 @@ export const homepage: SiteContent["homepage"] = {
     heading: "Найдите клинику на карте",
   },
 };
-
-export const positioningQuote: SiteContent["positioningQuote"] = {
-  text: "Не имплантолог — хирург.",
-  author: "[Автор / контекст]", // TODO
-};

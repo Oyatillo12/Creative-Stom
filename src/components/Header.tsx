@@ -9,19 +9,11 @@ import { localePrefix, type Locale } from "@/content";
 import type { NavKey } from "@/content/types";
 import { LOCALES } from "@/config/site.config";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { NAV_ROUTES } from "@/lib/nav";
 import Container from "./Container";
 import { useModals } from "./ModalProvider";
 
 const MotionLink = m.create(Link);
-
-const NAV_ROUTES: Record<NavKey, string> = {
-  services: "/xizmatlar",
-  doctors: "/shifokorlar",
-  cases: "/keyslar",
-  about: "/klinika",
-  prices: "/narxlar",
-  contact: "/aloqa",
-};
 
 type DropdownId = "services" | "clinic" | "lang";
 
@@ -187,6 +179,14 @@ export default function Header() {
                   className="transition-colors hover:text-gold"
                 >
                   {layout.topBar.telegramLabel}
+                </a>
+                <a
+                  href={clinic.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-gold"
+                >
+                  {layout.topBar.instagramLabel}
                 </a>
                 <span className="flex items-center gap-3 uppercase tracking-wide">
                   {LOCALES.map((l) => (

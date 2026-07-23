@@ -43,6 +43,7 @@ export const layout: SiteContent["layout"] = {
   },
   topBar: {
     telegramLabel: "Telegram",
+    instagramLabel: "Instagram",
   },
   header: {
     ctaLabel: "Onlayn yozilish",
@@ -59,13 +60,12 @@ export const layout: SiteContent["layout"] = {
     book: "Yozilish",
   },
   footer: {
-    licenseLabel: "Litsenziya",
-    rightsNote: "[Barcha huquqlar himoyalangan]", // TODO
+    contactsLabel: "Kontaktlar",
+    rightsNote: "© Creative Stom — barcha huquqlar himoyalangan",
   },
 };
 
 export const mapBlock: SiteContent["mapBlock"] = {
-  openLabel: "Xaritani ochish",
   iframeTitle: "Klinika xaritada",
   landmarkLabel: "Mo'ljal",
   phoneLabel: "Telefon",

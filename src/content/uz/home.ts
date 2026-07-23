@@ -1,4 +1,4 @@
-// UZ — homepage copy: hero slides, all homepage sections, positioning quote.
+// UZ — homepage copy: hero slides and all homepage sections.
 
 import type { SiteContent } from "../types";
 import { heroSlideImages } from "../media";
@@ -85,9 +85,4 @@ export const homepage: SiteContent["homepage"] = {
     eyebrow: "Kontakt",
     heading: "Klinikani xaritada toping",
   },
-};
-
-export const positioningQuote: SiteContent["positioningQuote"] = {
-  text: "Implantolog emas — jarroh.",
-  author: "[Muallif / kontekst]", // TODO
 };

@@ -91,7 +91,7 @@ export interface SiteContent {
     address: string;
     landmark: string;
     telegramUrl: string;
-    license: string;
+    instagramUrl: string;
     coordinates: { lat: number; lng: number };
     workHours: string;
     stats: { years: string; surgeries: string; doctors: number };
@@ -103,11 +103,11 @@ export interface SiteContent {
       primary: NavLink[];
       clinic: { label: string; items: NavLink[] };
     };
-    topBar: { telegramLabel: string };
+    topBar: { telegramLabel: string; instagramLabel: string };
     header: { ctaLabel: string; menuLabel: string; closeLabel: string; langLabel: string };
     preloader: { ariaLabel: string };
     stickyBar: { call: string; telegram: string; book: string };
-    footer: { licenseLabel: string; rightsNote: string };
+    footer: { contactsLabel: string; rightsNote: string };
   };
   heroSlides: { image: string; caption: string }[];
   doctors: Doctor[];
@@ -115,12 +115,9 @@ export interface SiteContent {
   media: {
     aboutInterior: string;
     processWide: string;
-    mapFacade: string;
-    videoPoster: string;
     implantHero: string;
   };
   mapBlock: {
-    openLabel: string;
     iframeTitle: string;
     landmarkLabel: string;
     phoneLabel: string;
@@ -213,7 +210,6 @@ export interface SiteContent {
     closeLabel: string;
     successTemplate: string;
   };
-  positioningQuote: { text: string; author: string };
   bookingForm: {
     nameLabel: string;
     namePlaceholder: string;

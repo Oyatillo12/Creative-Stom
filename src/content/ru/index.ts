@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site.config";
 import type { SiteContent } from "../types";
 import { media } from "../media";
 import { meta, clinicText, layout, mapBlock } from "./common";
-import { heroSlides, homepage, positioningQuote } from "./home";
+import { heroSlides, homepage } from "./home";
 import { services } from "./services";
 import { servicePages, serviceTemplate } from "./service-pages";
 import { pages } from "./pages";
@@ -20,7 +20,7 @@ export const ru: SiteContent = {
     name: siteConfig.clinic.name,
     phone: siteConfig.clinic.phone,
     telegramUrl: siteConfig.clinic.telegramUrl,
-    license: siteConfig.clinic.license,
+    instagramUrl: siteConfig.clinic.instagramUrl,
     coordinates: siteConfig.clinic.coordinates,
     stats: siteConfig.clinic.stats,
     address: clinicText.address,
@@ -44,6 +44,5 @@ export const ru: SiteContent = {
   reviews,
   prices,
   quiz,
-  positioningQuote,
   bookingForm,
 };
