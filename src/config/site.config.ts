@@ -37,8 +37,8 @@ export const siteConfig = {
 
   /** Analytics IDs — empty string disables the integration. */
   analytics: {
-    gaId: "", // TODO
-    yandexMetricaId: "", // TODO
+    gaId: "G-GPP0KXCP75", // TODO
+    yandexMetricaId: "111015375", // TODO
   },
 
   /** Lead intake — wired up in the lead-pipeline phase. */
