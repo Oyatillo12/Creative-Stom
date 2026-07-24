@@ -11,10 +11,10 @@ export const siteConfig = {
   /** Clinic identity — locale-independent facts. */
   clinic: {
     name: "Creative Stom", // TODO
-    phone: "+998 [XX] [XXX-XX-XX]", // TODO
-    telegramUrl: "https://t.me/[username]", // TODO
-    instagramUrl: "https://instagram.com/[username]", // TODO
-    coordinates: { lat: 41.3111, lng: 69.2797 },
+    phone: "+998 97 431-22-14", // TODO
+    telegramUrl: "https://t.me/creative_stom1", // TODO
+    instagramUrl: "https://instagram.com/creative_stom", // TODO
+    coordinates: { lat: 41.280715, lng: 69.1797011 },
     stats: {
       years: "6+", // TODO
       surgeries: "100+", // TODO
