@@ -84,14 +84,14 @@ export default function BeforeAfterSlider({
         <Image src={beforeSrc} alt={beforeAlt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
       </div>
 
-      <span className="pointer-events-none absolute top-4 left-4 font-body text-xs font-semibold tracking-[0.2em] text-ivory uppercase md:top-6 md:left-6">
+      <span className="pointer-events-none absolute top-4 left-4 rounded-full bg-card px-3.5 py-1.5 font-body text-xs font-bold tracking-[0.1em] text-ink uppercase md:top-6 md:left-6">
         {beforeLabel}
       </span>
-      <span className="pointer-events-none absolute top-4 right-4 font-body text-xs font-semibold tracking-[0.2em] text-ivory uppercase md:top-6 md:right-6">
+      <span className="pointer-events-none absolute top-4 right-4 rounded-full bg-sky px-3.5 py-1.5 font-body text-xs font-bold tracking-[0.1em] text-ink uppercase md:top-6 md:right-6">
         {afterLabel}
       </span>
 
-      <div className="pointer-events-none absolute inset-y-0 w-0.5 bg-gold" style={{ left: `${position}%` }} />
+      <div className="pointer-events-none absolute inset-y-0 w-1 bg-coral" style={{ left: `${position}%` }} />
 
       <div
         role="slider"
@@ -101,7 +101,7 @@ export default function BeforeAfterSlider({
         aria-valuemax={100}
         aria-valuenow={Math.round(position)}
         onKeyDown={onKeyDown}
-        className="absolute top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-ivory text-navy shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        className="sticker absolute top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full bg-coral text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral"
         style={{ left: `${position}%` }}
       >
         <span aria-hidden="true" className="font-body text-xs font-semibold tracking-[0.05em]">

@@ -6,6 +6,7 @@ import { formatUzPhone } from "@/lib/phone";
 import { submitLead } from "@/lib/lead";
 import type { LeadSource } from "@/lib/analytics";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { btn } from "@/lib/ui";
 
 export function BookingFormFields({
   tone = "light",
@@ -24,19 +25,23 @@ export function BookingFormFields({
   const [submitted, setSubmitted] = useState(false);
 
   const dark = tone === "dark";
-  const labelColor = dark ? "text-ivory/50" : "text-muted";
-  const inputColor = dark ? "border-ivory/30 text-ivory placeholder:text-ivory/40" : "border-line text-ink";
-  const successColor = dark ? "text-ivory" : "text-navy";
+  const labelColor = dark ? "text-paper/60" : "text-ink/60";
+  const inputCls = dark
+    ? "border-paper/25 bg-violet-2 text-paper placeholder:text-paper/40 focus-visible:border-sky"
+    : "border-ink/15 bg-card text-ink placeholder:text-ink/40 focus-visible:border-violet";
+  const successColor = dark ? "text-paper" : "text-violet";
 
   if (submitted) {
     return (
-      <p className={`font-display text-2xl leading-snug md:text-3xl ${successColor}`}>{bookingForm.successMessage}</p>
+      <p className={`font-display text-xl font-medium leading-snug md:text-2xl ${successColor}`}>
+        {bookingForm.successMessage}
+      </p>
     );
   }
 
   return (
     <form
-      className="flex flex-col gap-6"
+      className="flex flex-col gap-5"
       onSubmit={async (e) => {
         e.preventDefault();
         if (status === "sending") return;
@@ -54,7 +59,7 @@ export function BookingFormFields({
       }}
     >
       <label className="block">
-        <span className={`font-body text-xs font-semibold tracking-[0.18em] uppercase ${labelColor}`}>
+        <span className={`font-body text-xs font-semibold tracking-[0.14em] uppercase ${labelColor}`}>
           {bookingForm.nameLabel}
         </span>
         <input
@@ -63,12 +68,12 @@ export function BookingFormFields({
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder={bookingForm.namePlaceholder}
-          className={`mt-3 w-full border-b bg-transparent py-3 font-body text-base outline-none focus-visible:border-gold ${inputColor}`}
+          className={`mt-2.5 w-full rounded-2xl border-[1.5px] px-4 py-3.5 font-body text-base outline-none ${inputCls}`}
         />
       </label>
 
       <label className="block">
-        <span className={`font-body text-xs font-semibold tracking-[0.18em] uppercase ${labelColor}`}>
+        <span className={`font-body text-xs font-semibold tracking-[0.14em] uppercase ${labelColor}`}>
           {bookingForm.phoneLabel}
         </span>
         <input
@@ -78,18 +83,18 @@ export function BookingFormFields({
           value={phone}
           onChange={(e) => setPhone(formatUzPhone(e.target.value))}
           placeholder={bookingForm.phonePlaceholder}
-          className={`mt-3 w-full border-b bg-transparent py-3 font-body text-base outline-none focus-visible:border-gold ${inputColor}`}
+          className={`mt-2.5 w-full rounded-2xl border-[1.5px] px-4 py-3.5 font-body text-base outline-none ${inputCls}`}
         />
       </label>
 
       <label className="block">
-        <span className={`font-body text-xs font-semibold tracking-[0.18em] uppercase ${labelColor}`}>
+        <span className={`font-body text-xs font-semibold tracking-[0.14em] uppercase ${labelColor}`}>
           {bookingForm.serviceLabel}
         </span>
         <select
           value={service}
           onChange={(e) => setService(e.target.value)}
-          className={`mt-3 w-full border-b bg-transparent py-3 font-body text-base outline-none focus-visible:border-gold ${inputColor}`}
+          className={`mt-2.5 w-full rounded-2xl border-[1.5px] px-4 py-3.5 font-body text-base outline-none ${inputCls}`}
         >
           <option value="any" className="text-ink">
             {bookingForm.serviceAnyLabel}
@@ -103,7 +108,7 @@ export function BookingFormFields({
       </label>
 
       <label className="block">
-        <span className={`font-body text-xs font-semibold tracking-[0.18em] uppercase ${labelColor}`}>
+        <span className={`font-body text-xs font-semibold tracking-[0.14em] uppercase ${labelColor}`}>
           {bookingForm.timeLabel}
         </span>
         <input
@@ -111,20 +116,16 @@ export function BookingFormFields({
           value={time}
           onChange={(e) => setTime(e.target.value)}
           placeholder={bookingForm.timePlaceholder}
-          className={`mt-3 w-full border-b bg-transparent py-3 font-body text-base outline-none focus-visible:border-gold ${inputColor}`}
+          className={`mt-2.5 w-full rounded-2xl border-[1.5px] px-4 py-3.5 font-body text-base outline-none ${inputCls}`}
         />
       </label>
 
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="mt-2 bg-gold px-9 py-4 font-body text-xs font-semibold tracking-[0.12em] text-navy uppercase transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:opacity-60"
-      >
+      <button type="submit" disabled={status === "sending"} className={`mt-1 ${btn.primary} disabled:opacity-60`}>
         {status === "sending" ? bookingForm.sendingLabel : bookingForm.submitLabel}
       </button>
 
       {status === "error" && (
-        <p role="alert" className={`font-body text-sm ${dark ? "text-gold" : "text-gold-dark"}`}>
+        <p role="alert" className="rounded-2xl bg-lemon px-4 py-3 font-body text-sm font-medium text-ink">
           {bookingForm.errorMessage}
         </p>
       )}
@@ -154,29 +155,29 @@ export default function BookingForm({ open, onClose }: { open: boolean; onClose:
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/70 px-4 py-10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 px-4 py-10">
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="max-h-full w-full max-w-lg overflow-y-auto bg-ivory p-8 md:p-12"
+        className="card-soft max-h-full w-full max-w-lg overflow-y-auto rounded-[28px] bg-paper p-7 md:p-10"
       >
         <div className="flex items-start justify-between gap-6">
-          <h2 id={titleId} className="font-display text-2xl text-navy md:text-3xl">
+          <h2 id={titleId} className="font-display text-xl font-medium text-ink md:text-2xl">
             {site.layout.header.ctaLabel}
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Yopish"
-            className="font-body text-sm text-muted transition-colors hover:text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-ink/15 font-body text-sm text-ink transition-colors hover:border-coral hover:text-coral focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral"
           >
             ✕
           </button>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-7">
           <BookingFormFields />
         </div>
       </div>

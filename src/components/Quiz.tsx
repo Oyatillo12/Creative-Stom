@@ -5,6 +5,7 @@ import { useContent } from "./LocaleProvider";
 import { formatUzPhone } from "@/lib/phone";
 import { submitLead } from "@/lib/lead";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { btn } from "@/lib/ui";
 
 const CHOICE_FIELDS = ["toothCount", "duration", "hasCt", "timeline"] as const;
 type ChoiceField = (typeof CHOICE_FIELDS)[number];
@@ -70,23 +71,23 @@ export default function Quiz({ open, onClose }: { open: boolean; onClose: () => 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy/70 px-4 py-10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 px-4 py-10">
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="max-h-full w-full max-w-lg overflow-y-auto bg-navy p-8 text-ivory md:p-12"
+        className="card-soft max-h-full w-full max-w-lg overflow-y-auto rounded-[28px] bg-violet p-7 text-paper md:p-10"
       >
         <div className="flex items-start justify-between gap-6">
-          <h2 id={titleId} className="font-display text-2xl md:text-3xl">
+          <h2 id={titleId} className="font-display text-xl font-medium md:text-2xl">
             {quizCopy.heading}
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Yopish"
-            className="font-body text-sm text-ivory/60 transition-colors hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-[1.5px] border-paper/30 font-body text-sm text-paper/80 transition-colors hover:border-sky hover:text-sky focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky"
           >
             ✕
           </button>
@@ -107,16 +108,15 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
   const progress = ((state.stepIndex + 1) / totalSteps) * 100;
   const isContactStep = state.stepIndex === steps.length;
 
+  const inputCls =
+    "mt-2.5 w-full rounded-2xl border-[1.5px] border-paper/25 bg-violet-2 px-4 py-3.5 font-body text-base text-paper outline-none placeholder:text-paper/40 focus-visible:border-sky";
+
   if (state.submitted) {
     const message = successTemplate.replace("{name}", state.name.trim());
     return (
       <div className="mt-10 text-center">
-        <p className="font-display text-2xl leading-snug md:text-3xl">{message}</p>
-        <button
-          type="button"
-          onClick={onClose}
-          className="mt-8 bg-gold px-9 py-4 font-body text-xs font-semibold tracking-[0.12em] text-navy uppercase transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-        >
+        <p className="font-display text-xl font-medium leading-snug md:text-2xl">{message}</p>
+        <button type="button" onClick={onClose} className={`mt-8 ${btn.primary}`}>
           {closeLabel}
         </button>
       </div>
@@ -130,18 +130,21 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={Math.round(progress)}
-        className="h-1 w-full overflow-hidden bg-ivory/15"
+        className="h-2 w-full overflow-hidden rounded-full bg-paper/15"
       >
-        <div className="h-full bg-gold transition-[width] duration-300 ease-out" style={{ width: `${progress}%` }} />
+        <div
+          className="h-full rounded-full bg-coral transition-[width] duration-300 ease-out"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
-      <div className="mt-6 font-body text-xs font-semibold tracking-[0.2em] text-gold uppercase">
+      <div className="mt-6 font-body text-xs font-semibold tracking-[0.2em] text-sky uppercase">
         {state.stepIndex + 1} / {totalSteps}
       </div>
 
       {isContactStep ? (
         <form
-          className="mt-4 flex flex-col gap-6"
+          className="mt-4 flex flex-col gap-5"
           onSubmit={async (e) => {
             e.preventDefault();
             if (status === "sending") return;
@@ -157,7 +160,7 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
           }}
         >
           <label className="block">
-            <span className="font-body text-xs font-semibold tracking-[0.18em] text-ivory/50 uppercase">
+            <span className="font-body text-xs font-semibold tracking-[0.14em] text-paper/60 uppercase">
               {contactStep.nameLabel}
             </span>
             <input
@@ -166,12 +169,12 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
               value={state.name}
               onChange={(e) => dispatch({ type: "SET_NAME", value: e.target.value })}
               placeholder={contactStep.namePlaceholder}
-              className="mt-3 w-full border-b border-ivory/30 bg-transparent py-3 font-body text-base text-ivory outline-none placeholder:text-ivory/40 focus-visible:border-gold"
+              className={inputCls}
             />
           </label>
 
           <label className="block">
-            <span className="font-body text-xs font-semibold tracking-[0.18em] text-ivory/50 uppercase">
+            <span className="font-body text-xs font-semibold tracking-[0.14em] text-paper/60 uppercase">
               {contactStep.phoneLabel}
             </span>
             <input
@@ -181,36 +184,38 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
               value={state.phone}
               onChange={(e) => dispatch({ type: "SET_PHONE", value: formatUzPhone(e.target.value) })}
               placeholder={contactStep.phonePlaceholder}
-              className="mt-3 w-full border-b border-ivory/30 bg-transparent py-3 font-body text-base text-ivory outline-none placeholder:text-ivory/40 focus-visible:border-gold"
+              className={inputCls}
             />
           </label>
 
-          <div className="mt-2 flex items-center gap-8">
+          <div className="mt-2 flex items-center gap-6">
             <button
               type="button"
               onClick={() => dispatch({ type: "BACK" })}
-              className="font-body text-xs font-semibold tracking-[0.14em] text-ivory/60 uppercase transition-colors hover:text-ivory"
+              className="font-body text-xs font-semibold tracking-[0.14em] text-paper/60 uppercase transition-colors hover:text-paper"
             >
               ← {backLabel}
             </button>
             <button
               type="submit"
               disabled={status === "sending"}
-              className="flex-1 bg-gold px-9 py-4 text-center font-body text-xs font-semibold tracking-[0.12em] text-navy uppercase transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:opacity-60"
+              className={`flex-1 ${btn.primary} disabled:opacity-60`}
             >
               {status === "sending" ? site.bookingForm.sendingLabel : contactStep.submitLabel}
             </button>
           </div>
 
           {status === "error" && (
-            <p role="alert" className="font-body text-sm text-gold">
+            <p role="alert" className="rounded-2xl bg-lemon px-4 py-3 font-body text-sm font-medium text-ink">
               {site.bookingForm.errorMessage}
             </p>
           )}
         </form>
       ) : (
         <div className="mt-4">
-          <div className="font-display text-xl leading-snug md:text-2xl">{steps[state.stepIndex].question}</div>
+          <div className="font-display text-lg font-medium leading-snug md:text-xl">
+            {steps[state.stepIndex].question}
+          </div>
           <div className="mt-6 flex flex-col gap-3">
             {steps[state.stepIndex].options.map((option) => {
               const field = CHOICE_FIELDS[state.stepIndex];
@@ -220,8 +225,10 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
                   key={option.value}
                   type="button"
                   onClick={() => dispatch({ type: "ANSWER", field, value: option.value })}
-                  className={`border px-6 py-4 text-left font-body text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
-                    selected ? "border-gold text-gold" : "border-ivory/25 text-ivory hover:border-gold hover:text-gold"
+                  className={`rounded-2xl border-[1.5px] px-6 py-4 text-left font-body text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky ${
+                    selected
+                      ? "border-sky bg-violet-2 text-sky"
+                      : "border-paper/25 text-paper hover:border-sky hover:text-sky"
                   }`}
                 >
                   {option.label}
@@ -234,7 +241,7 @@ function QuizFlow({ onClose }: { onClose: () => void }) {
             <button
               type="button"
               onClick={() => dispatch({ type: "BACK" })}
-              className="mt-6 font-body text-xs font-semibold tracking-[0.14em] text-ivory/60 uppercase transition-colors hover:text-ivory"
+              className="mt-6 font-body text-xs font-semibold tracking-[0.14em] text-paper/60 uppercase transition-colors hover:text-paper"
             >
               ← {backLabel}
             </button>

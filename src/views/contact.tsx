@@ -29,7 +29,7 @@ export default function ContactView({ locale }: { locale: Locale }) {
         intro={pages.contact.intro}
       />
 
-      <section className="bg-ivory py-24 md:py-32">
+      <section className="py-20 md:py-28">
         <Container>
           <Reveal>
             <MapBlock />

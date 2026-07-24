@@ -1,29 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0b1d2e;
-  --navy-2: #16324a;
-  --ivory: #faf8f4;
-  --bone: #efeae0;
-  --gold: #d4af6a;
-  --gold-dark: #9a7b44;
-  --ink: #2a3642;
-  --muted: #7c8894;
-  --line: #dfd8c8;
+  --paper: #f6f7fe;
+  --card: #ffffff;
+  --violet: #5546e8;
+  --violet-2: #6a5cf2;
+  --sky: #d8e9ff;
+  --lemon: #ffe9a0;
+  --lilac: #e6e0fc;
+  --coral: #ff6752;
+  --ink: #211f3d;
+  --muted: #6e718c;
+  --line: #e4e4f1;
 }
 
 @theme inline {
-  --color-navy: var(--navy);
-  --color-navy-2: var(--navy-2);
-  --color-ivory: var(--ivory);
-  --color-bone: var(--bone);
-  --color-gold: var(--gold);
-  --color-gold-dark: var(--gold-dark);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-violet: var(--violet);
+  --color-violet-2: var(--violet-2);
+  --color-sky: var(--sky);
+  --color-lemon: var(--lemon);
+  --color-lilac: var(--lilac);
+  --color-coral: var(--coral);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
+  --radius-card: 28px;
+  --radius-tile: 20px;
 }
 
 html {
@@ -31,16 +37,48 @@ html {
 }
 
 body {
-  background: var(--ivory);
+  /* The page's one gradient: a soft cool wash from white through ice blue to
+     pale lilac. Everything else stays flat fills. */
+  background-color: var(--paper);
+  background-image: linear-gradient(170deg, #fbfcff 0%, #f0f4fe 45%, #edeafc 100%);
   color: var(--ink);
 }
 
-@keyframes kenburns {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.06);
+/* Signature surfaces — the site's one decorative system.
+   Big cards float on a soft ambient shadow; interactive "sticker" elements
+   (buttons, chips) get an ink outline plus a hard offset shadow that
+   collapses on press. */
+.card-soft {
+  box-shadow: 0 24px 48px -28px rgba(22, 48, 43, 0.28);
+}
+
+.sticker {
+  border: 2px solid var(--ink);
+  box-shadow: 0 4px 0 0 var(--ink);
+}
+
+.sticker-press {
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.sticker-press:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 0 var(--ink);
+}
+
+.sticker-press:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 0 var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticker-press,
+  .sticker-press:hover,
+  .sticker-press:active {
+    transform: none;
+    transition: none;
   }
 }
 

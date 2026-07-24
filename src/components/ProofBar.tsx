@@ -3,7 +3,13 @@ import AnimatedCounter from "./motion/AnimatedCounter";
 import { RevealGroup, RevealItem } from "./motion/RevealGroup";
 import { getContent, type Locale } from "@/content";
 
-// Thin proof band: the clinic's three headline stats counting up on scroll.
+const CARD_STYLES = [
+  "bg-lemon -rotate-[1.5deg]",
+  "bg-card rotate-[1deg]",
+  "bg-sky -rotate-[1deg]",
+];
+
+// Three tilted stat stickers counting up on scroll.
 export default function ProofBar({ locale = "uz" }: { locale?: Locale } = {}) {
   const site = getContent(locale);
   const { stats, statsLabels } = site.clinic;
@@ -14,16 +20,19 @@ export default function ProofBar({ locale = "uz" }: { locale?: Locale } = {}) {
   ];
 
   return (
-    <section className="border-y border-line bg-bone py-12 md:py-16">
+    <section className="py-10 md:py-14">
       <Container>
-        <RevealGroup className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6" stagger={0.12}>
-          {items.map((item) => (
-            <RevealItem key={item.label} className="flex items-baseline gap-5 sm:block">
+        <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-6" stagger={0.12}>
+          {items.map((item, i) => (
+            <RevealItem
+              key={item.label}
+              className={`sticker flex items-baseline justify-between gap-4 rounded-[24px] px-7 py-6 sm:block md:px-8 md:py-8 ${CARD_STYLES[i % CARD_STYLES.length]}`}
+            >
               <AnimatedCounter
                 value={item.value}
-                className="font-display text-5xl text-navy md:text-6xl lg:text-7xl"
+                className="font-display text-4xl font-semibold text-ink md:text-5xl"
               />
-              <div className="font-body text-xs font-semibold uppercase tracking-[0.18em] text-ink/70 sm:mt-3">
+              <div className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-ink/60 sm:mt-3">
                 {item.label}
               </div>
             </RevealItem>

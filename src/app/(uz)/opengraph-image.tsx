@@ -4,7 +4,7 @@ import { getContent } from "@/content";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Brand card: navy field, gold rule, clinic name + localized tagline.
+// Brand card: violet field, coral dot, clinic name + localized tagline.
 export default function OpengraphImage() {
   const site = getContent("uz");
   return new ImageResponse(
@@ -17,14 +17,14 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          backgroundColor: "#0B1D2E",
-          color: "#FAF8F4",
-          fontFamily: "Georgia, serif",
+          backgroundColor: "#5546E8",
+          color: "#F6F7FE",
+          fontFamily: "Arial, sans-serif",
         }}
       >
-        <div style={{ width: 72, height: 4, backgroundColor: "#D4AF6A", marginBottom: 40 }} />
-        <div style={{ fontSize: 96 }}>{site.clinic.name}</div>
-        <div style={{ fontSize: 36, marginTop: 28, color: "#D4AF6A" }}>{site.homepage.hero.heading}</div>
+        <div style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: "#FF6752", marginBottom: 40 }} />
+        <div style={{ fontSize: 88, fontWeight: 700 }}>{site.clinic.name}</div>
+        <div style={{ fontSize: 34, marginTop: 28, color: "#D8E9FF" }}>{site.homepage.hero.heading}</div>
       </div>
     ),
     size,

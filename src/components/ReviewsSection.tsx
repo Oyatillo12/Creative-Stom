@@ -9,12 +9,12 @@ export default function ReviewsSection({ locale = "uz" }: { locale?: Locale } = 
   const copy = site.homepage.reviews;
 
   return (
-    <section className="bg-bone py-24 md:py-32">
+    <section className="overflow-hidden py-20 md:py-28">
       <Container>
         <Reveal>
           <SectionHeading eyebrow={copy.eyebrow} heading={copy.heading} />
         </Reveal>
-        <Reveal className="mt-14 md:mt-16" delayMs={100}>
+        <Reveal className="mt-12 md:mt-14" delayMs={100}>
           <ReviewsCarousel
             items={site.reviews.items}
             heading={copy.heading}

@@ -1,12 +1,13 @@
-import { Inter, Playfair_Display } from "next/font/google";
+import { Golos_Text, Unbounded } from "next/font/google";
 
-export const playfairDisplay = Playfair_Display({
+export const displayFont = Unbounded({
   variable: "--font-display",
   subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-export const inter = Inter({
+export const bodyFont = Golos_Text({
   variable: "--font-body",
   subsets: ["latin", "cyrillic"],
   display: "swap",

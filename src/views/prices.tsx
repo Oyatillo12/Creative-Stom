@@ -17,6 +17,8 @@ export function pricesMetadata(locale: Locale): Metadata {
   };
 }
 
+const TIER_STYLES = ["bg-sky -rotate-[1deg]", "bg-card rotate-[0.8deg]", "bg-lemon -rotate-[0.8deg]"];
+
 export default function PricesView({ locale }: { locale: Locale }) {
   const site = getContent(locale);
   const prefix = localePrefix(locale);
@@ -35,55 +37,65 @@ export default function PricesView({ locale }: { locale: Locale }) {
         intro={pages.prices.intro}
       />
 
-      {/* Implant tiers: large display numbers on ivory */}
-      <section className="bg-ivory py-24 md:py-32">
+      {/* Implant tiers: three tilted sticker cards */}
+      <section className="py-16 md:py-24">
         <Container>
           <Reveal>
             <SectionHeading eyebrow={homepage.prices.eyebrow} heading={homepage.prices.heading} />
           </Reveal>
-          <div className="mt-14 grid gap-px bg-line sm:grid-cols-3 md:mt-20">
+          <div className="mt-12 grid gap-5 sm:grid-cols-3 sm:gap-6 md:mt-16">
             {prices.tiers.map((tier, i) => (
-              <Reveal key={tier.label} delayMs={i * 70} className="bg-ivory py-10 sm:px-8 sm:first:pl-0">
-                <div className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
+              <Reveal
+                key={tier.label}
+                delayMs={i * 70}
+                className={`sticker rounded-[24px] px-7 py-8 ${TIER_STYLES[i % TIER_STYLES.length]}`}
+              >
+                <div className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-ink/60">
                   {tier.label}
                 </div>
-                <div className="mt-4 font-display text-4xl text-navy md:text-5xl">{tier.priceFrom}</div>
+                <div className="mt-4 font-display text-2xl font-semibold text-ink md:text-3xl">
+                  {tier.priceFrom}
+                </div>
               </Reveal>
             ))}
           </div>
           <Reveal className="mt-10">
-            <p className="max-w-xl font-body text-sm leading-relaxed text-ink/70">{prices.disclaimer}</p>
+            <p className="max-w-xl rounded-[24px] bg-lemon p-6 font-body text-sm leading-relaxed text-ink">
+              {prices.disclaimer}
+            </p>
           </Reveal>
         </Container>
       </section>
 
-      {/* Per-service table rows on bone */}
-      <section className="bg-bone py-24 md:py-32">
+      {/* Per-service price list inside one white mega-card */}
+      <section className="pb-16 md:pb-24">
         <Container>
           <Reveal>
-            <div className="flex items-baseline justify-between gap-6 border-b-2 border-navy pb-4 font-body text-xs font-semibold uppercase tracking-[0.24em] text-navy">
-              <span>{pages.prices.serviceColumn}</span>
-              <span>{pages.prices.priceColumn}</span>
+            <div className="card-soft rounded-[28px] bg-card p-6 md:p-10">
+              <div className="flex items-baseline justify-between gap-6 border-b-2 border-ink pb-4 font-body text-xs font-bold uppercase tracking-[0.18em] text-ink">
+                <span>{pages.prices.serviceColumn}</span>
+                <span>{pages.prices.priceColumn}</span>
+              </div>
+              <div>
+                {serviceRows.map((row, i) => (
+                  <Reveal key={row.slug} delayMs={i * 40}>
+                    <Link
+                      href={`${prefix}/xizmatlar/${row.slug}`}
+                      className="group -mx-3 flex items-baseline justify-between gap-6 rounded-2xl border-b border-line px-3 py-5 transition-colors last:border-b-0 hover:bg-sky/40"
+                    >
+                      <span className="font-display text-base font-medium text-ink transition-colors group-hover:text-violet md:text-lg">
+                        {row.title}
+                      </span>
+                      <span className="shrink-0 rounded-full bg-paper px-3.5 py-1.5 font-body text-sm font-semibold text-ink">
+                        {row.priceFrom}
+                        {serviceTemplate.priceFromLabel ? ` ${serviceTemplate.priceFromLabel}` : ""}
+                      </span>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </Reveal>
-          <div>
-            {serviceRows.map((row, i) => (
-              <Reveal key={row.slug} delayMs={i * 40}>
-                <Link
-                  href={`${prefix}/xizmatlar/${row.slug}`}
-                  className="group flex items-baseline justify-between gap-6 border-b border-line py-6 transition-colors hover:bg-ivory"
-                >
-                  <span className="font-display text-xl text-navy transition-colors group-hover:text-gold-dark md:text-2xl">
-                    {row.title}
-                  </span>
-                  <span className="shrink-0 font-body text-base text-ink">
-                    {row.priceFrom}
-                    {serviceTemplate.priceFromLabel ? ` ${serviceTemplate.priceFromLabel}` : ""}
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
         </Container>
       </section>
 

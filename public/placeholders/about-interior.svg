@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
-  <rect width="1400" height="900" fill="#0B1D2E" />
-  <rect x="14" y="14" width="1372" height="872" fill="none" stroke="#D4AF6A" stroke-width="1.5" />
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#FAF8F4" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="8">KLINIKA INTERYERI</text>
+  <rect width="1400" height="900" fill="#D8E9FF" />
+  <rect x="72" y="72" width="1256" height="756" rx="63" fill="#F6F7FE" opacity="0.35" />
+  <rect x="72" y="72" width="1256" height="756" rx="63" fill="none" stroke="#211F3D" stroke-opacity="0.5" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round" />
+  <circle cx="700" cy="403.6" r="8" fill="#FF6752" />
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" fill="#211F3D" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="5">KLINIKA INTERYERI</text>
 </svg>

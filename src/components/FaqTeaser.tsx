@@ -5,8 +5,9 @@ import Reveal from "./Reveal";
 import { RevealGroup, RevealItem } from "./motion/RevealGroup";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { NAV_ROUTES } from "@/lib/nav";
+import { btn } from "@/lib/ui";
 
-// Objection removal before the booking closer: FAQ accordion beside the
+// Objection removal before the booking closer: FAQ accordion cards beside the
 // honest-pricing note and a route to the full price list.
 export default function FaqTeaser({ locale = "uz" }: { locale?: Locale } = {}) {
   const site = getContent(locale);
@@ -14,36 +15,33 @@ export default function FaqTeaser({ locale = "uz" }: { locale?: Locale } = {}) {
   const faqCopy = site.homepage.faq;
 
   return (
-    <section className="bg-ivory py-24 md:py-32">
+    <section className="py-20 md:py-28">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-24">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
           <Reveal>
             <SectionHeading eyebrow={faqCopy.eyebrow} heading={faqCopy.heading} />
-            <p className="mt-8 max-w-md font-body text-base leading-relaxed text-ink/80">
+            <p className="mt-7 max-w-md rounded-[24px] bg-lemon p-6 font-body text-sm leading-relaxed text-ink md:text-base">
               {site.prices.disclaimer}
             </p>
-            <Link
-              href={`${prefix}${NAV_ROUTES.prices}`}
-              className="mt-8 inline-block border-b border-navy/30 pb-1 font-body text-sm font-semibold uppercase tracking-[0.12em] text-navy transition-colors hover:border-gold-dark hover:text-gold-dark"
-            >
+            <Link href={`${prefix}${NAV_ROUTES.prices}`} className={`mt-8 ${btn.light}`}>
               {site.homepage.prices.linkLabel}
             </Link>
           </Reveal>
 
-          <RevealGroup stagger={0.07} className="border-t border-line">
+          <RevealGroup stagger={0.07} className="flex flex-col gap-4">
             {site.faq.map((item) => (
               <RevealItem key={item.question}>
-                <details className="group border-b border-line">
-                  <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 py-6 font-display text-xl text-navy transition-colors hover:text-gold-dark md:text-2xl [&::-webkit-details-marker]:hidden">
+                <details className="group card-soft rounded-[24px] bg-card px-6 md:px-8">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-base font-medium text-ink transition-colors hover:text-violet md:py-6 md:text-lg [&::-webkit-details-marker]:hidden">
                     {item.question}
                     <span
                       aria-hidden="true"
-                      className="shrink-0 font-body text-lg text-gold-dark transition-transform duration-300 group-open:rotate-45"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky font-body text-lg text-ink transition-transform duration-300 group-open:rotate-45"
                     >
                       +
                     </span>
                   </summary>
-                  <p className="max-w-xl pb-7 font-body text-sm leading-relaxed text-ink/80 md:text-base">
+                  <p className="max-w-xl pb-6 font-body text-sm leading-relaxed text-ink/75 md:text-base">
                     {item.answer}
                   </p>
                 </details>

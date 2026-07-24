@@ -7,6 +7,7 @@ import BookingBand from "@/components/BookingBand";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
 import { JsonLd, physicianJsonLd } from "@/lib/jsonld";
+import { chip } from "@/lib/ui";
 
 export function doctorsIndexMetadata(locale: Locale): Metadata {
   const site = getContent(locale);
@@ -16,6 +17,9 @@ export function doctorsIndexMetadata(locale: Locale): Metadata {
     alternates: alternatesFor("/shifokorlar", locale),
   };
 }
+
+const PHOTO_BGS = ["bg-sky", "bg-lemon"];
+const PHOTO_TILTS = ["-rotate-[1.2deg]", "rotate-[1.2deg]"];
 
 export default function DoctorsIndexView({ locale }: { locale: Locale }) {
   const site = getContent(locale);
@@ -33,9 +37,9 @@ export default function DoctorsIndexView({ locale }: { locale: Locale }) {
         intro={pages.doctors.intro}
       />
 
-      {/* Full dossiers: alternating photo/bio rows with education + focus */}
-      <section className="bg-ivory py-24 md:py-32">
-        <Container className="flex flex-col gap-24 md:gap-32">
+      {/* Full dossiers: alternating photo-sticker/bio rows with education + focus */}
+      <section className="py-20 md:py-28">
+        <Container className="flex flex-col gap-20 md:gap-28">
           {doctors.map((doctor, i) => (
             <Reveal key={doctor.slug}>
               <div
@@ -43,24 +47,28 @@ export default function DoctorsIndexView({ locale }: { locale: Locale }) {
                   i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
                 }`}
               >
-                <div className="relative aspect-[4/5] overflow-hidden md:sticky md:top-28">
-                  <Image
-                    src={doctor.photo}
-                    alt={doctor.name}
-                    fill
-                    sizes="(min-width: 768px) 420px, 100vw"
-                    className="object-cover"
-                  />
+                <div className={`md:sticky md:top-28 ${PHOTO_TILTS[i % PHOTO_TILTS.length]}`}>
+                  <div
+                    className={`sticker relative aspect-[4/5] overflow-hidden rounded-[28px] ${PHOTO_BGS[i % PHOTO_BGS.length]}`}
+                  >
+                    <Image
+                      src={doctor.photo}
+                      alt={doctor.name}
+                      fill
+                      sizes="(min-width: 768px) 420px, 100vw"
+                      className="object-cover"
+                    />
+                    <span className="absolute top-4 left-4 rounded-full bg-card px-3.5 py-1.5 font-body text-xs font-semibold uppercase tracking-[0.1em] text-ink">
+                      {doctor.role}
+                    </span>
+                  </div>
                 </div>
 
                 <div>
-                  <div className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
-                    {doctor.role}
-                  </div>
-                  <h2 className="mt-4 font-display text-3xl text-navy md:text-5xl">{doctor.name}</h2>
-                  <div className="mt-4 font-body text-sm text-ink/70">{doctor.regalia}</div>
+                  <h2 className="font-display text-2xl font-semibold text-ink md:text-3xl">{doctor.name}</h2>
+                  <div className="mt-3 font-body text-sm text-ink/70">{doctor.regalia}</div>
 
-                  <div className="mt-8 max-w-2xl">
+                  <div className="mt-7 max-w-2xl">
                     {doctor.bio.map((paragraph, j) => (
                       <p key={j} className="mt-5 font-body text-base leading-relaxed text-ink first:mt-0">
                         {paragraph}
@@ -68,26 +76,31 @@ export default function DoctorsIndexView({ locale }: { locale: Locale }) {
                     ))}
                   </div>
 
-                  <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
-                    <div>
-                      <div className="font-body text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
+                  <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
+                    <div className="card-soft rounded-[24px] bg-card p-6 md:p-7">
+                      <div className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink/15 px-3.5 py-1.5 font-body text-xs font-semibold uppercase tracking-[0.12em] text-ink">
+                        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-coral" />
                         {pages.doctors.focusLabel}
                       </div>
-                      <ul className="mt-4">
+                      <div className="mt-5 flex flex-wrap gap-2">
                         {doctor.focus.map((entry) => (
-                          <li key={entry} className="border-t border-line py-4 font-display text-lg text-navy last:border-b">
+                          <span key={entry} className={chip}>
                             {entry}
-                          </li>
+                          </span>
                         ))}
-                      </ul>
+                      </div>
                     </div>
-                    <div>
-                      <div className="font-body text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
+                    <div className="card-soft rounded-[24px] bg-card p-6 md:p-7">
+                      <div className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink/15 px-3.5 py-1.5 font-body text-xs font-semibold uppercase tracking-[0.12em] text-ink">
+                        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-sky" />
                         {pages.doctors.educationLabel}
                       </div>
                       <ul className="mt-4">
                         {doctor.education.map((entry) => (
-                          <li key={entry} className="border-t border-line py-4 font-body text-sm leading-relaxed text-ink last:border-b">
+                          <li
+                            key={entry}
+                            className="border-t border-line py-3.5 font-body text-sm leading-relaxed text-ink first:border-t-0"
+                          >
                             {entry}
                           </li>
                         ))}

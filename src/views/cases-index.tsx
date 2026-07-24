@@ -7,6 +7,7 @@ import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import BookingBand from "@/components/BookingBand";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
+import { btn } from "@/lib/ui";
 
 export function casesIndexMetadata(locale: Locale): Metadata {
   const site = getContent(locale);
@@ -30,9 +31,9 @@ export default function CasesIndexView({ locale }: { locale: Locale }) {
         intro={pages.cases.intro}
       />
 
-      {/* Case rows: slider beside summary, alternating sides */}
-      <section className="bg-ivory py-24 md:py-32">
-        <Container className="flex flex-col gap-24 md:gap-32">
+      {/* Case rows: slider sticker beside summary, alternating sides */}
+      <section className="py-20 md:py-28">
+        <Container className="flex flex-col gap-20 md:gap-28">
           {cases.map((caseItem, i) => (
             <Reveal key={caseItem.slug}>
               <div
@@ -47,19 +48,17 @@ export default function CasesIndexView({ locale }: { locale: Locale }) {
                   afterAlt={`${caseItem.title} — ${homepage.cases.afterLabel}`}
                   beforeLabel={homepage.cases.beforeLabel}
                   afterLabel={homepage.cases.afterLabel}
+                  className={`sticker aspect-[4/3] rounded-[28px] ${i % 2 === 1 ? "rotate-[0.8deg]" : "-rotate-[0.8deg]"}`}
                 />
                 <div>
-                  <div className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-gold-dark">
+                  <div className="inline-flex rounded-full bg-sky px-3.5 py-1.5 font-body text-xs font-semibold text-ink">
                     {caseItem.service}
                   </div>
-                  <h2 className="mt-4 font-display text-3xl text-navy md:text-4xl">{caseItem.title}</h2>
-                  <p className="mt-5 max-w-md font-body text-base leading-relaxed text-ink/80">
+                  <h2 className="mt-4 font-display text-xl font-semibold text-ink md:text-2xl">{caseItem.title}</h2>
+                  <p className="mt-4 max-w-md font-body text-base leading-relaxed text-ink/75">
                     {caseItem.story.problem}
                   </p>
-                  <Link
-                    href={`${prefix}/keyslar/${caseItem.slug}`}
-                    className="mt-8 inline-block font-body text-xs font-semibold uppercase tracking-[0.14em] text-navy transition-transform duration-200 hover:translate-x-1"
-                  >
+                  <Link href={`${prefix}/keyslar/${caseItem.slug}`} className={`mt-7 ${btn.lemon}`}>
                     {pages.cases.openLabel}
                   </Link>
                 </div>

@@ -9,7 +9,7 @@ import Analytics from "@/components/Analytics";
 import UtmCapture from "@/components/UtmCapture";
 import { getContent, type Locale } from "@/content";
 import { siteConfig } from "@/config/site.config";
-import { inter, playfairDisplay } from "@/lib/fonts";
+import { bodyFont, displayFont } from "@/lib/fonts";
 import { JsonLd, clinicJsonLd } from "@/lib/jsonld";
 
 // Shared document shell used by both root layouts ((uz) and /ru).
@@ -19,11 +19,11 @@ export default function SiteShell({ locale, children }: { locale: Locale; childr
   return (
     <html
       lang={locale}
-      className={`${playfairDisplay.variable} ${inter.variable}`}
+      className={`${displayFont.variable} ${bodyFont.variable}`}
       data-scroll-behavior="smooth"
       data-metrica-id={siteConfig.analytics.yandexMetricaId || undefined}
     >
-      <body className="flex min-h-screen flex-col bg-ivory font-body text-ink antialiased">
+      <body className="flex min-h-screen flex-col bg-paper font-body text-ink antialiased">
         <JsonLd data={clinicJsonLd(locale)} />
         <MotionProvider>
           <LocaleProvider locale={locale}>

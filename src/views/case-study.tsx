@@ -8,6 +8,7 @@ import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import BookingBand from "@/components/BookingBand";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { alternatesFor } from "@/lib/seo";
+import { textLink } from "@/lib/ui";
 
 export function caseStaticParams() {
   return getContent("uz").cases.map((caseItem) => ({ slug: caseItem.slug }));
@@ -22,6 +23,8 @@ export function caseMetadata(locale: Locale, slug: string): Metadata {
     alternates: alternatesFor(`/keyslar/${slug}`, locale),
   };
 }
+
+const STORY_BGS = ["bg-sky", "bg-card", "bg-lemon"];
 
 export default function CaseStudyView({ locale, slug }: { locale: Locale; slug: string }) {
   const site = getContent(locale);
@@ -47,8 +50,8 @@ export default function CaseStudyView({ locale, slug }: { locale: Locale; slug: 
         intro={caseItem.service}
       />
 
-      {/* Full-width slider, then the three-part narrative */}
-      <section className="bg-ivory py-24 md:py-32">
+      {/* Full-width slider, then the three-part narrative as colored cards */}
+      <section className="py-20 md:py-28">
         <Container>
           <Reveal>
             <BeforeAfterSlider
@@ -58,13 +61,19 @@ export default function CaseStudyView({ locale, slug }: { locale: Locale; slug: 
               afterAlt={`${caseItem.title} — ${homepage.cases.afterLabel}`}
               beforeLabel={homepage.cases.beforeLabel}
               afterLabel={homepage.cases.afterLabel}
+              className="sticker aspect-[4/3] w-full rounded-[32px] sm:aspect-[16/9]"
             />
           </Reveal>
 
-          <div className="mt-20 grid gap-12 md:grid-cols-3 md:gap-10">
+          <div className="mt-14 grid gap-5 md:mt-20 md:grid-cols-3 md:gap-6">
             {story.map((part, i) => (
-              <Reveal key={part.label} delayMs={i * 70} className="border-t border-line pt-6">
-                <div className="font-body text-xs font-semibold uppercase tracking-[0.24em] text-gold-dark">
+              <Reveal
+                key={part.label}
+                delayMs={i * 70}
+                className={`card-soft flex h-full flex-col rounded-[24px] p-6 md:p-7 ${STORY_BGS[i % STORY_BGS.length]}`}
+              >
+                <div className="inline-flex items-center gap-2 self-start rounded-full border-[1.5px] border-ink/15 bg-paper/70 px-3.5 py-1.5 font-body text-xs font-semibold uppercase tracking-[0.12em] text-ink">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-coral" />
                   {part.label}
                 </div>
                 <p className="mt-4 font-body text-base leading-relaxed text-ink">{part.text}</p>
@@ -72,11 +81,8 @@ export default function CaseStudyView({ locale, slug }: { locale: Locale; slug: 
             ))}
           </div>
 
-          <Reveal className="mt-16">
-            <Link
-              href={`${prefix}/keyslar`}
-              className="font-body text-xs font-semibold uppercase tracking-[0.14em] text-gold-dark transition-colors hover:text-navy"
-            >
+          <Reveal className="mt-14">
+            <Link href={`${prefix}/keyslar`} className={textLink}>
               {pages.cases.allCasesLabel}
             </Link>
           </Reveal>

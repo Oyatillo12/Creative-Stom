@@ -6,6 +6,8 @@ import type { ReviewItem } from "@/content/types";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { EASE_OUT } from "./motion-utils";
 
+const CARD_TILTS = ["-rotate-[0.8deg]", "rotate-[0.8deg]", "rotate-0"];
+
 // Drag-to-scroll review cards with prev/next buttons and arrow-key support.
 // The track is one motion value; buttons and drag snapping both animate it to
 // a card index, clamped so the last card parks at the right edge.
@@ -75,11 +77,11 @@ export default function ReviewsCarousel({
   };
 
   const buttonCls =
-    "flex h-12 w-12 items-center justify-center border border-line font-body text-lg text-navy transition-colors hover:border-gold-dark hover:text-gold-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold disabled:pointer-events-none disabled:opacity-30";
+    "sticker sticker-press flex h-12 w-12 items-center justify-center rounded-full bg-card font-body text-lg text-ink disabled:pointer-events-none disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coral";
 
   return (
     <div role="region" aria-roledescription="carousel" aria-label={heading} onKeyDown={onKeyDown}>
-      <div ref={viewportRef} className="overflow-hidden">
+      <div ref={viewportRef} className="overflow-hidden py-2">
         <m.div
           ref={trackRef}
           drag="x"
@@ -94,14 +96,18 @@ export default function ReviewsCarousel({
               key={review.name + i}
               role="group"
               aria-label={`${i + 1} / ${items.length}`}
-              className="flex w-[min(85vw,420px)] shrink-0 flex-col border border-line bg-ivory"
+              className={`card-soft flex w-[min(85vw,420px)] shrink-0 flex-col rounded-[24px] bg-card ${CARD_TILTS[i % CARD_TILTS.length]}`}
             >
-              <div className="h-0.5 w-full bg-gold" />
-              <div className="flex flex-1 flex-col justify-between p-8 md:p-10">
-                <p className="font-display text-lg leading-relaxed text-navy md:text-xl">{review.text}</p>
-                <footer className="mt-10 flex items-baseline justify-between gap-4 border-t border-line pt-6">
-                  <span className="font-body text-sm font-semibold text-ink">{review.name}</span>
-                  <span className="text-right font-body text-xs font-semibold uppercase tracking-[0.14em] text-gold-dark">
+              <div className="flex flex-1 flex-col justify-between p-7 md:p-9">
+                <div>
+                  <span aria-hidden="true" className="font-display text-4xl font-bold leading-none text-coral">
+                    “
+                  </span>
+                  <p className="mt-2 font-body text-base leading-relaxed text-ink">{review.text}</p>
+                </div>
+                <footer className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
+                  <span className="font-body text-sm font-bold text-ink">{review.name}</span>
+                  <span className="rounded-full bg-sky px-3 py-1 font-body text-xs font-semibold text-ink">
                     {review.service}
                   </span>
                 </footer>
@@ -111,8 +117,8 @@ export default function ReviewsCarousel({
         </m.div>
       </div>
 
-      <div className="mt-10 flex items-center justify-between">
-        <span className="font-body text-xs font-semibold uppercase tracking-[0.2em] text-muted" aria-hidden="true">
+      <div className="mt-8 flex items-center justify-between">
+        <span className="font-body text-xs font-bold uppercase tracking-[0.2em] text-ink/50" aria-hidden="true">
           {String(index + 1).padStart(2, "0")} — {String(items.length).padStart(2, "0")}
         </span>
         <div className="flex gap-3">

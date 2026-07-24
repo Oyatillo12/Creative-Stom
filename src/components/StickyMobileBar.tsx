@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useContent } from "./LocaleProvider";
 import { useModals } from "./ModalProvider";
 
+// Floating pill dock on mobile: call / telegram / book.
 export default function StickyMobileBar() {
   const site = useContent();
   const { clinic, layout } = site;
@@ -32,32 +33,34 @@ export default function StickyMobileBar() {
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t-2 border-gold bg-navy text-ivory transition-transform duration-300 md:hidden ${
-        hidden ? "translate-y-full" : "translate-y-0"
+      className={`fixed inset-x-3 bottom-3 z-40 transition-transform duration-300 md:hidden ${
+        hidden ? "translate-y-[130%]" : "translate-y-0"
       }`}
-      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      style={{ marginBottom: "env(safe-area-inset-bottom)" }}
     >
-      <a
-        href={phoneHref}
-        className="flex min-h-12 items-center justify-center border-r border-ivory/15 text-xs font-semibold uppercase tracking-wide"
-      >
-        {layout.stickyBar.call}
-      </a>
-      <a
-        href={clinic.telegramUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex min-h-12 items-center justify-center border-r border-ivory/15 text-xs font-semibold uppercase tracking-wide"
-      >
-        {layout.stickyBar.telegram}
-      </a>
-      <button
-        type="button"
-        onClick={openBooking}
-        className="flex min-h-12 items-center justify-center text-xs font-semibold uppercase tracking-wide"
-      >
-        {layout.stickyBar.book}
-      </button>
+      <div className="sticker grid grid-cols-3 overflow-hidden rounded-full bg-violet text-paper">
+        <a
+          href={phoneHref}
+          className="flex min-h-13 items-center justify-center border-r border-paper/15 text-xs font-semibold uppercase tracking-wide"
+        >
+          {layout.stickyBar.call}
+        </a>
+        <a
+          href={clinic.telegramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-h-13 items-center justify-center text-xs font-semibold uppercase tracking-wide"
+        >
+          {layout.stickyBar.telegram}
+        </a>
+        <button
+          type="button"
+          onClick={openBooking}
+          className="flex min-h-13 items-center justify-center bg-coral text-xs font-bold uppercase tracking-wide text-ink"
+        >
+          {layout.stickyBar.book}
+        </button>
+      </div>
     </div>
   );
 }

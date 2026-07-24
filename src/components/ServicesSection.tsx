@@ -6,8 +6,11 @@ import BookingTrigger from "./BookingTrigger";
 import { RevealGroup, RevealItem } from "./motion/RevealGroup";
 import { getContent, localePrefix, type Locale } from "@/content";
 import { NAV_ROUTES } from "@/lib/nav";
+import { btn } from "@/lib/ui";
 
-// Navy service index: the heading column pins while the six rows scroll past.
+const CARD_COLORS = ["bg-card", "bg-sky", "bg-lemon"];
+
+// Teal mega-card holding the service catalogue as a grid of colored tiles.
 export default function ServicesSection({ locale = "uz" }: { locale?: Locale } = {}) {
   const site = getContent(locale);
   const prefix = localePrefix(locale);
@@ -15,14 +18,11 @@ export default function ServicesSection({ locale = "uz" }: { locale?: Locale } =
   const catalogue = site.services;
   const priceFor = (slug: string) => site.servicePages.find((p) => p.slug === slug)?.priceFrom;
 
-  const bookCls =
-    "bg-gold px-9 py-4 font-body text-xs font-semibold uppercase tracking-[0.12em] text-navy transition-colors hover:bg-gold-dark hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";
-
   return (
-    <section id="services" className="bg-navy py-24 text-ivory md:py-32">
-      <Container>
-        <div className="grid gap-16 lg:grid-cols-[380px_1fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+    <section id="services" className="px-4 py-10 md:px-6 md:py-14">
+      <div className="mx-auto w-full max-w-[1400px] rounded-[36px] bg-violet">
+        <Container className="py-16 md:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-8">
             <Reveal>
               <SectionHeading
                 eyebrow={services.eyebrow}
@@ -30,46 +30,47 @@ export default function ServicesSection({ locale = "uz" }: { locale?: Locale } =
                 description={services.intro}
                 tone="dark"
               />
-              <BookingTrigger label={services.bookLabel} className={`mt-10 hidden lg:inline-block ${bookCls}`} />
+            </Reveal>
+            <Reveal delayMs={100}>
+              <BookingTrigger label={services.bookLabel} className={btn.primary} />
             </Reveal>
           </div>
 
-          <div>
-            <RevealGroup stagger={0.08} className="border-b border-ivory/15">
-              {catalogue.map((item, i) => (
-                <RevealItem key={item.slug}>
-                  <Link
-                    href={`${prefix}${NAV_ROUTES.services}/${item.slug}`}
-                    className="group -mx-4 flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-ivory/15 px-4 py-6 transition-colors hover:bg-navy-2 sm:flex-nowrap sm:py-7"
-                  >
-                    <span className="w-8 shrink-0 font-body text-xs text-ivory/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-display text-xl leading-snug sm:text-2xl md:text-3xl">
-                        {item.title}
-                      </span>
-                      <span className="mt-1.5 block font-body text-sm text-ivory/50">{item.line}</span>
-                    </span>
+          <RevealGroup stagger={0.07} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-16">
+            {catalogue.map((item, i) => (
+              <RevealItem key={item.slug} className="h-full">
+                <Link
+                  href={`${prefix}${NAV_ROUTES.services}/${item.slug}`}
+                  className={`group flex h-full flex-col rounded-[24px] p-7 transition-transform duration-200 hover:-translate-y-1.5 md:p-8 ${CARD_COLORS[i % CARD_COLORS.length]}`}
+                >
+                  <span className="inline-flex h-9 w-9 items-center justify-center self-start rounded-full border-[1.5px] border-ink/20 font-body text-xs font-bold text-ink">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="mt-5 block font-display text-lg font-medium leading-snug text-ink md:text-xl">
+                    {item.title}
+                  </span>
+                  <span className="mt-2.5 block font-body text-sm leading-relaxed text-ink/65">{item.line}</span>
+                  <span className="mt-auto flex items-center justify-between gap-4 pt-7">
                     {priceFor(item.slug) ? (
-                      <span className="shrink-0 font-body text-sm text-ivory/60">{priceFor(item.slug)}</span>
-                    ) : null}
+                      <span className="rounded-full border-[1.5px] border-ink/20 px-3.5 py-1.5 font-body text-xs font-semibold text-ink">
+                        {priceFor(item.slug)}
+                      </span>
+                    ) : (
+                      <span />
+                    )}
                     <span
                       aria-hidden="true"
-                      className="shrink-0 font-body text-lg text-gold transition-transform duration-200 group-hover:translate-x-1.5"
+                      className="flex h-9 w-9 items-center justify-center rounded-full bg-ink font-body text-sm text-paper transition-transform duration-200 group-hover:translate-x-1"
                     >
                       →
                     </span>
-                  </Link>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-            <Reveal className="mt-10 lg:hidden">
-              <BookingTrigger label={services.bookLabel} className={bookCls} />
-            </Reveal>
-          </div>
-        </div>
-      </Container>
+                  </span>
+                </Link>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </Container>
+      </div>
     </section>
   );
 }

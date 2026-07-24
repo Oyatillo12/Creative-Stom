@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0 0 1920 1200">
-  <rect width="1920" height="1200" fill="#0B1D2E" />
-  <rect x="14" y="14" width="1892" height="1172" fill="none" stroke="#D4AF6A" stroke-width="1.5" />
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#FAF8F4" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="11">MIKROSKOP OSTIDA ISH</text>
+  <rect width="1920" height="1200" fill="#FFE9A0" />
+  <rect x="96" y="96" width="1728" height="1008" rx="84" fill="#F6F7FE" opacity="0.35" />
+  <rect x="96" y="96" width="1728" height="1008" rx="84" fill="none" stroke="#211F3D" stroke-opacity="0.5" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round" />
+  <circle cx="960" cy="539.2" r="11" fill="#FF6752" />
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" fill="#211F3D" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="7">MIKROSKOP OSTIDA ISH</text>
 </svg>

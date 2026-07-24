@@ -9,12 +9,12 @@ export default function ContactSlot({ locale = "uz" }: { locale?: Locale } = {})
   const { contact } = site.homepage;
 
   return (
-    <section id="contact" className="bg-ivory py-24 md:py-32">
+    <section id="contact" className="py-20 md:py-28">
       <Container>
         <Reveal>
           <SectionHeading eyebrow={contact.eyebrow} heading={contact.heading} />
         </Reveal>
-        <Reveal className="mt-14 md:mt-20">
+        <Reveal className="mt-12 md:mt-16">
           <MapBlock />
         </Reveal>
       </Container>

@@ -1,5 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
-  <rect width="800" height="1000" fill="#0B1D2E" />
-  <rect x="14" y="14" width="772" height="972" fill="none" stroke="#D4AF6A" stroke-width="1.5" />
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#FAF8F4" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="7">SHIFOKOR 2</text>
+  <rect width="800" height="1000" fill="#E6E0FC" />
+  <rect x="64" y="64" width="672" height="872" rx="56" fill="#F6F7FE" opacity="0.35" />
+  <rect x="64" y="64" width="672" height="872" rx="56" fill="none" stroke="#211F3D" stroke-opacity="0.5" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round" />
+  <circle cx="400" cy="458.4" r="7" fill="#FF6752" />
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" fill="#211F3D" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="5">SHIFOKOR 2</text>
 </svg>
