@@ -32,7 +32,7 @@ export default function SiteShell({ locale, children }: { locale: Locale; childr
                 <Preloader brand={site.clinic.name} ariaLabel={site.layout.preloader.ariaLabel} />
               )}
               <Header />
-              <main className="flex-1 pb-16 md:pb-0">{children}</main>
+              <main className="flex-1 pb-24 md:pb-0">{children}</main>
               <Footer locale={locale} />
               {siteConfig.features.stickyMobileBar && <StickyMobileBar />}
               <UtmCapture />

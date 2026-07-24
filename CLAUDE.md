@@ -64,6 +64,15 @@ Contrast rules:
 - Header is a floating white pill bar (`Header.tsx`); pages start with `pt-28 md:pt-32` heroes to clear it.
 - No two adjacent sections may share a layout pattern (alternate paper sections and colored mega-cards, vary grid shapes and card colors).
 
+## Mobile (primary audience)
+
+Most users are on phones — mobile is not an afterthought:
+
+- Tile grids (services, step timelines) become horizontal snap carousels below `sm`/`md`: `no-scrollbar -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2` on the group, `w-[75..80%] max-w-[300px] shrink-0 snap-start` on items, restored to `grid` at the breakpoint. Follow this exact recipe for any new tile row.
+- Mobile chrome auto-hides on scroll down and returns on scroll up via `useHideOnScroll` (`src/hooks/useHideOnScroll.ts`): the header (mobile only — desktop stays pinned) and the bottom dock both use it.
+- The bottom dock (`StickyMobileBar`) is conversion-first: dominant coral Book button, compact round call/telegram glyph buttons. While the dock is hidden, a round lemon call FAB appears bottom-right. These two are the only places inline SVG glyphs are allowed.
+- `<main>` carries `pb-24 md:pb-0` so the dock never covers final content.
+
 ## Content rule
 
 **All visible text comes from the content layer** — no component hardcodes copy: not a label, not a placeholder string, not an alt text. The content layer is:

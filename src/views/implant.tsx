@@ -162,12 +162,13 @@ export default function ImplantView({ locale }: { locale: Locale }) {
             <SectionHeading eyebrow={implantPage.process.eyebrow} heading={implantPage.process.heading} />
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 gap-5 md:mt-16 md:grid-cols-5 md:gap-6">
+          {/* Mobile: horizontal snap carousel; md+: five-column grid. */}
+          <div className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:mt-16 md:grid md:snap-none md:grid-cols-5 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
             {implantPage.process.steps.map((step, i) => (
               <Reveal
                 key={step.n}
                 delayMs={i * 70}
-                className="card-soft flex h-full flex-col rounded-[24px] bg-card p-5 md:p-6"
+                className="card-soft flex h-full w-[62%] max-w-[240px] shrink-0 snap-start flex-col rounded-[24px] bg-card p-5 md:w-auto md:max-w-none md:shrink md:p-6"
               >
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-lemon font-body text-xs font-bold text-ink">
                   {step.n}

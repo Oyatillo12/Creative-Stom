@@ -82,6 +82,15 @@ body {
   }
 }
 
+/* Mobile snap carousels hide their scrollbar; swiping is the affordance. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes brandfill {
   from {
     clip-path: inset(0 100% 0 0);

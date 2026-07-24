@@ -38,14 +38,15 @@ export default function FirstVisitSection({ locale = "uz" }: { locale?: Locale }
               style={reducedMotion ? undefined : { scaleX: scrollYProgress }}
               className="absolute inset-x-0 -top-4 hidden h-1 origin-left rounded-full bg-coral md:block"
             />
+            {/* Mobile: horizontal snap carousel; md+: four-column grid. */}
             <RevealGroup
               stagger={0.1}
-              className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4 md:gap-6 md:pt-6"
+              className="no-scrollbar -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 md:mx-0 md:grid md:snap-none md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:pt-6"
             >
               {firstVisit.steps.map((step) => (
                 <RevealItem
                   key={step.n}
-                  className="flex h-full flex-col rounded-[24px] bg-paper p-6 md:p-7"
+                  className="flex h-full w-[75%] max-w-[300px] shrink-0 snap-start flex-col rounded-[24px] bg-paper p-6 md:w-auto md:max-w-none md:shrink md:p-7"
                 >
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-coral font-body text-sm font-bold text-ink">
                     {step.n}

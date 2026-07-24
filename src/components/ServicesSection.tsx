@@ -36,9 +36,16 @@ export default function ServicesSection({ locale = "uz" }: { locale?: Locale } =
             </Reveal>
           </div>
 
-          <RevealGroup stagger={0.07} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-16">
+          {/* Mobile: horizontal snap carousel; sm+: grid. */}
+          <RevealGroup
+            stagger={0.07}
+            className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 md:mt-16 lg:grid-cols-3"
+          >
             {catalogue.map((item, i) => (
-              <RevealItem key={item.slug} className="h-full">
+              <RevealItem
+                key={item.slug}
+                className="h-full w-[80%] max-w-[320px] shrink-0 snap-start sm:w-auto sm:max-w-none sm:shrink"
+              >
                 <Link
                   href={`${prefix}${NAV_ROUTES.services}/${item.slug}`}
                   className={`group flex h-full flex-col rounded-[24px] p-7 transition-transform duration-200 hover:-translate-y-1.5 md:p-8 ${CARD_COLORS[i % CARD_COLORS.length]}`}

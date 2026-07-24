@@ -9,6 +9,7 @@ import { localePrefix, type Locale } from "@/content";
 import type { NavKey } from "@/content/types";
 import { LOCALES } from "@/config/site.config";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { useHideOnScroll } from "@/hooks/useHideOnScroll";
 import { NAV_ROUTES } from "@/lib/nav";
 import { useModals } from "./ModalProvider";
 
@@ -45,6 +46,7 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdown, setDropdown] = useState<DropdownId | null>(null);
+  const scrollHidden = useHideOnScroll();
   const toggleDropdown = (id: DropdownId) => setDropdown((cur) => (cur === id ? null : id));
 
   // Close menu and dropdowns when navigation changes the route (state adjusted
@@ -108,7 +110,14 @@ export default function Header() {
   };
 
   return (
-    <header ref={headerRef} className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
+    <header
+      ref={headerRef}
+      // On mobile the bar slides away while scrolling down (like the dock);
+      // desktop keeps it pinned. Never hide while the menu is open.
+      className={`fixed inset-x-0 top-0 z-50 px-4 pt-4 transition-transform duration-300 md:px-6 ${
+        scrollHidden && !menuOpen && !dropdown ? "-translate-y-[120%] lg:translate-y-0" : "translate-y-0"
+      }`}
+    >
       <AnimatePresence>
         {menuOpen && (
           <m.div

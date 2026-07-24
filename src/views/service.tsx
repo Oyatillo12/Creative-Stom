@@ -97,9 +97,16 @@ export default function ServiceView({ locale, slug }: { locale: Locale; slug: st
             <Reveal>
               <SectionHeading eyebrow={t.processEyebrow} heading={t.processHeading} tone="dark" />
             </Reveal>
-            <RevealGroup stagger={0.09} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 md:mt-16">
+            {/* Mobile: horizontal snap carousel; sm+: grid. */}
+            <RevealGroup
+              stagger={0.09}
+              className="no-scrollbar -mx-6 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 md:mt-16 lg:grid-cols-4"
+            >
               {page.steps.map((step) => (
-                <RevealItem key={step.n} className="flex h-full flex-col rounded-[24px] bg-violet-2 p-6 md:p-7">
+                <RevealItem
+                  key={step.n}
+                  className="flex h-full w-[75%] max-w-[300px] shrink-0 snap-start flex-col rounded-[24px] bg-violet-2 p-6 sm:w-auto sm:max-w-none sm:shrink md:p-7"
+                >
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sky font-body text-sm font-bold text-ink">
                     {step.n}
                   </span>
