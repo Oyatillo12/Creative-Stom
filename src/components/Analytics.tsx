@@ -1,14 +1,18 @@
 import Script from "next/script";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/config/site.config";
 
-// Renders nothing until real IDs are configured in site.config. Scripts load
-// lazily so they never compete with page rendering.
+// Renders analytics scripts including Vercel Web Analytics, Google Analytics,
+// and Yandex Metrica. Scripts load lazily so they never compete with page rendering.
 export default function Analytics() {
   const { gaId, yandexMetricaId } = siteConfig.analytics;
-  if (!gaId && !yandexMetricaId) return null;
 
   return (
     <>
+      {/* Vercel Web Analytics */}
+      <VercelAnalytics />
+
+      {/* Google Analytics */}
       {gaId && (
         <>
           <Script
@@ -23,6 +27,8 @@ gtag('config', '${gaId}');`}
           </Script>
         </>
       )}
+
+      {/* Yandex Metrica */}
       {yandexMetricaId && (
         <>
           <Script id="ym-init" strategy="lazyOnload">
