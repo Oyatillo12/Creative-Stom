@@ -6,7 +6,7 @@ import { doctorPhotos } from "../media";
 export const doctors: SiteContent["doctors"] = [
   {
     slug: "doctor-1",
-    name: "[Dr. FAMILIYA 1]", // TODO
+    name: "John Doe", // TODO
     role: "Jag'-yuz jarrohi, asoschisi",
     regalia: "[malaka/sertifikat]", // TODO
     photo: doctorPhotos["doctor-1"],

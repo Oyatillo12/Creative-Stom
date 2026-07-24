@@ -6,7 +6,7 @@ import type { SiteContent } from "./types";
 
 export const media: SiteContent["media"] = {
   aboutInterior: "/images/interior.jpeg",
-  processWide: "/placeholders/wide-process.svg",
+  processWide: "/images/teeth-remove.png",
   implantHero: "/images/process-operation.jpg",
 };
 
@@ -18,11 +18,11 @@ export const heroSlideImages = {
 };
 
 export const doctorPhotos = {
-  "doctor-1": "/placeholders/doctor-1.svg",
-  "doctor-2": "/placeholders/doctor-2.svg",
+  "doctor-1": "/images/shifokor-1.jpg",
+  "doctor-2": "/images/shifokor-2.webp",
 };
 
 export const caseImages = {
-  "keys-01": { before: "/placeholders/case1-before.svg", after: "/placeholders/case1-after.svg" },
-  "keys-02": { before: "/placeholders/case2-before.svg", after: "/placeholders/case2-after.svg" },
+  "keys-01": { before: "/images/case-1.webp", after: "/images/case1-after.webp" },
+  "keys-02": { before: "/images/case2-before.webp", after: "/images/case2-after.webp" },
 };
